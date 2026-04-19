@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>polifonia</title>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,700;0,800;1,400;1,700&display=swap" rel="stylesheet">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'plm-bg': '#f4f7f6',
+                        'plm-green': '#a8c292',
+                        'plm-pink': '#fcd5e3',
+                        'plm-blue': '#bde3df',
+                        'plm-dark': '#222222',
+                    },
+                    fontFamily: {
+                        'serif': ['"Playfair Display"', 'serif'],
+                        'sans': ['"Inter"', 'sans-serif'],
+                    },
+                }
+            }
+        }
+    </script>
+
+    <style type="text/css">
+        /* Fondo de cuadrícula estilo cuaderno */
+        .grid-bg {
+            background-image: 
+                linear-gradient(to right, #e2e8f0 1px, transparent 1px),
+                linear-gradient(to bottom, #e2e8f0 1px, transparent 1px);
+            background-size: 40px 40px;
+        }
+
+        /* Animación de la franja infinita */
+        @keyframes marquee {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+        .animate-marquee {
+            display: flex;
+            width: 200%;
+            animation: marquee 20s linear infinite;
+        }
+
+        /* Estilo para las tarjetas con scroll horizontal en móvil (Ya no es necesario pero se mantiene por si lo usas en otra sección) */
+        .cards-container::-webkit-scrollbar {
+            display: none;
+        }
+        .cards-container {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+</head>
+<body class="bg-plm-green font-sans text-plm-dark antialiased px-2 md:px-4 py-4 md:py-8">
+
+    <div id="inicio" class="max-w-[1200px] mx-auto bg-white border border-plm-dark shadow-2xl overflow-hidden">
+        
+        <div class="bg-plm-blue border-b border-plm-dark py-2 text-center text-[10px] font-bold tracking-[0.2em] uppercase">
+            Nuevos artículos cada semana
+        </div>
+
+        <div class="grid-bg relative border-b border-plm-dark min-h-[500px] md:min-h-[600px] flex flex-col">
+            
+            <header class="flex items-center justify-between px-4 md:px-8 py-4 md:py-6 border-b border-gray-200 bg-white/80 backdrop-blur-md relative z-50">
+                <div class="text-3xl md:text-4xl font-serif font-bold tracking-tighter">polifonia.</div>
+                
+                <nav class="hidden lg:flex gap-8 text-[10px] font-bold tracking-widest uppercase text-gray-500">
+                    <a href="#inicio" class="hover:text-plm-dark transition">Inicio</a>
+                    <a href="#articulos" class="hover:text-plm-dark transition">Artículos</a>
+                    <a href="#sobre-mi" class="hover:text-plm-dark transition">Sobre Mí</a>
+                    <a href="#sobre-mi" class="hover:text-plm-dark transition">Contacto</a>
+                </nav>
+
+                <div class="flex items-center gap-3">
+                    <button class="bg-white border border-gray-300 rounded-full px-4 py-2 text-[10px] md:text-[11px] font-bold uppercase tracking-wider hidden md:flex items-center gap-2 hover:bg-plm-pink transition">
+                        <span class="w-2 h-2 rounded-full bg-pink-400"></span> Suscribirse
+                    </button>
+                    
+                    <button id="mobile-menu-btn" class="lg:hidden p-2 text-plm-dark focus:outline-none">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
+                        </svg>
+                    </button>
+                </div>
+            </header>
+
+            <div id="mobile-menu" class="hidden flex-col items-center gap-6 py-6 bg-white/95 backdrop-blur-md border-b border-plm-dark absolute top-[72px] md:top-[88px] left-0 w-full z-40 shadow-lg lg:hidden">
+                <a href="#inicio" class="mobile-link text-xs font-bold tracking-widest uppercase text-gray-500 hover:text-plm-dark transition">Inicio</a>
+                <a href="#articulos" class="mobile-link text-xs font-bold tracking-widest uppercase text-gray-500 hover:text-plm-dark transition">Artículos</a>
+                <a href="#sobre-mi" class="mobile-link text-xs font-bold tracking-widest uppercase text-gray-500 hover:text-plm-dark transition">Sobre Mí</a>
+                <a href="#sobre-mi" class="mobile-link text-xs font-bold tracking-widest uppercase text-gray-500 hover:text-plm-dark transition">Contacto</a>
+                <button class="bg-white border border-gray-300 rounded-full px-6 py-3 mt-2 text-[10px] font-bold uppercase tracking-wider flex items-center gap-2 hover:bg-plm-pink transition md:hidden">
+                    <span class="w-2 h-2 rounded-full bg-pink-400"></span> Suscribirse
+                </button>
+            </div>
+
+            <div class="flex-grow flex flex-col items-center justify-center text-center px-4 md:px-6 py-12 md:py-20 relative z-10">
+                <div class="absolute left-10 top-20 hidden md:block text-4xl">✨</div>
+                <div class="absolute right-20 top-10 hidden md:block text-3xl">☕</div>
+                
+                <div class="absolute left-8 bottom-20 bg-plm-pink border border-plm-dark p-3 rotate-[-4deg] max-w-[140px] text-[10px] font-bold uppercase leading-tight text-left hidden lg:block">
+                    Ideas, reflexiones y creatividad en un solo lugar
+                </div>
+
+                <h1 class="font-serif text-5xl sm:text-6xl md:text-8xl lg:text-9xl leading-[1.1] md:leading-[0.85] mb-8">
+                    un <span class="relative">espacio<span class="absolute inset-x-0 bottom-1 md:bottom-2 h-4 md:h-8 bg-plm-blue/60 -z-10 rounded-md"></span></span><br>
+                    <span class="italic font-normal">para</span> compartir<br>
+                    historias
+                </h1>
+
+                <button onclick="document.getElementById('articulos').scrollIntoView({behavior: 'smooth'})" class="bg-white border-2 border-plm-dark rounded-full px-8 md:px-10 py-3 md:py-4 text-base md:text-lg font-bold flex items-center gap-3 hover:translate-x-1 hover:translate-y-1 transition shadow-[4px_4px_0px_0px_rgba(34,34,34,1)]">
+                    Leer el Blog
+                </button>
+            </div>
+        </div>
+
+        <div class="bg-plm-green border-b border-plm-dark py-3 overflow-hidden">
+            <div class="animate-marquee whitespace-nowrap text-[11px] font-bold tracking-[0.3em] uppercase items-center">
+                <span class="mx-4">Escribiendo desde el corazón</span> | 
+                <span class="mx-4">Escribiendo desde el corazón</span> | 
+                <span class="mx-4">Escribiendo desde el corazón</span> | 
+                <span class="mx-4">Escribiendo desde el corazón</span> |
+                <span class="mx-4">Escribiendo desde el corazón</span> | 
+                <span class="mx-4">Escribiendo desde el corazón</span>
+            </div>
+        </div>
+
+        <section id="articulos" class="py-12 md:py-20 px-4 md:px-6 text-center border-b border-plm-dark bg-white">
+            <div class="flex justify-center mb-4 text-2xl">📝</div>
+            <h2 class="text-[10px] font-bold tracking-[0.3em] uppercase mb-4 text-gray-500">Últimas Publicaciones</h2>
+            <h3 class="font-serif text-2xl md:text-4xl max-w-2xl mx-auto leading-tight mb-6">
+                Explora los artículos más recientes sobre estilo de vida, diseño y reflexiones personales.
+            </h3>
+        </section>
+
+        <section class="p-6 md:p-8 bg-white border-b border-plm-dark">
+            <div id="articles-wrapper" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <p class="text-sm text-gray-500 col-span-full text-center">Cargando artículos...</p>
+            </div>
+        </section>
+
+        <section id="sobre-mi" class="flex flex-col md:flex-row bg-white">
+            <div class="flex-1 p-8 md:p-12 flex flex-col justify-center items-start">
+                <span class="text-[10px] font-bold tracking-[0.3em] uppercase text-gray-400 mb-6">Sobre la autora</span>
+                <h2 class="font-serif text-4xl md:text-5xl mb-6">Hola, soy Lula</h2>
+                <p class="text-sm text-gray-600 mb-8 leading-relaxed">
+                    Soy una apasionada por contar historias, crear contenido visual y explorar nuevas ideas. Creé este espacio como un diario digital para compartir mis aprendizajes, proyectos y las pequeñas cosas que me inspiran cada día.
+                </p>
+                <button class="border border-plm-dark rounded-full px-6 py-3 text-sm font-bold flex items-center gap-2 hover:bg-plm-blue transition">
+                    Contactar
+                </button>
+            </div>
+            <div class="flex-1 bg-plm-pink min-h-[300px] md:min-h-[400px] relative overflow-hidden border-t md:border-t-0 md:border-l border-plm-dark">
+                <img src="pequeña.jpeg" alt="Author" class="w-full h-full object-cover grayscale hover:grayscale-0 transition duration-700">
+            </div>
+        </section>
+
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="index.js"></script>
+</body>
+</html>
