@@ -35,7 +35,6 @@
             background-size: 40px 40px;
         }
 
-        /* Contenido del artículo (Quill / TinyMCE) */
         #article-content img {
             max-width: 100%;
             height: auto;
@@ -45,11 +44,8 @@
             cursor: zoom-in;
             transition: opacity 0.2s ease;
         }
-        #article-content img:hover {
-            opacity: 0.9;
-        }
+        #article-content img:hover { opacity: 0.9; }
         
-        /* Estilos específicos para reproductores de video */
         #article-content iframe {
             width: 100%;
             aspect-ratio: 16 / 9;
@@ -59,7 +55,7 @@
             margin-top: 1.5rem;
             margin-bottom: 1.5rem;
             background-color: #000;
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1), 0 2px 4px -1px rgba(0,0,0,0.06);
         }
 
         /* LIGHTBOX */
@@ -68,16 +64,14 @@
             position: fixed;
             inset: 0;
             z-index: 9999;
-            background: rgba(0, 0, 0, 0.92);
+            background: rgba(0,0,0,0.92);
             align-items: center;
             justify-content: center;
             padding: 1rem;
             backdrop-filter: blur(4px);
             -webkit-backdrop-filter: blur(4px);
         }
-        #lightbox.active {
-            display: flex;
-        }
+        #lightbox.active { display: flex; }
         #lightbox-img {
             max-width: 100%;
             max-height: 90vh;
@@ -92,33 +86,19 @@
         }
         #lightbox-close {
             position: fixed;
-            top: 1rem;
-            right: 1rem;
-            width: 36px;
-            height: 36px;
+            top: 1rem; right: 1rem;
+            width: 36px; height: 36px;
             border-radius: 50%;
             background: rgba(255,255,255,0.12);
             border: 1px solid rgba(255,255,255,0.2);
-            color: #fff;
-            font-size: 18px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            transition: background 0.2s;
-            line-height: 1;
+            color: #fff; font-size: 18px;
+            display: flex; align-items: center; justify-content: center;
+            cursor: pointer; transition: background 0.2s; line-height: 1;
         }
-        #lightbox-close:hover {
-            background: rgba(255,255,255,0.22);
-        }
-        /* Portada también con cursor zoom */
-        #article-image {
-            cursor: zoom-in;
-            transition: opacity 0.2s ease;
-        }
-        #article-image:hover {
-            opacity: 0.92;
-        }
+        #lightbox-close:hover { background: rgba(255,255,255,0.22); }
+
+        #article-image { cursor: zoom-in; transition: opacity 0.2s ease; }
+        #article-image:hover { opacity: 0.92; }
 
         /* COMENTARIOS */
         .comment-card {
@@ -128,42 +108,61 @@
             background: #fff;
         }
         .comment-avatar {
-            width: 30px;
-            height: 30px;
+            width: 30px; height: 30px;
             border-radius: 50%;
-            background: #fcd5e3;
-            color: #9b3d5e;
-            font-size: 10px;
-            font-weight: 700;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            flex-shrink: 0;
-            text-transform: uppercase;
+            background: #fcd5e3; color: #9b3d5e;
+            font-size: 10px; font-weight: 700;
+            display: flex; align-items: center; justify-content: center;
+            flex-shrink: 0; text-transform: uppercase;
         }
         .comment-input {
-            width: 100%;
-            font-size: 0.8rem;
-            border: 1px solid #d1d5db;
-            border-radius: 0.5rem;
-            padding: 0.5rem 0.75rem;
-            background: #fff;
-            color: #222;
-            box-sizing: border-box;
-            outline: none;
-            font-family: 'Inter', sans-serif;
-            transition: border-color 0.15s;
+            width: 100%; font-size: 0.8rem;
+            border: 1px solid #d1d5db; border-radius: 0.5rem;
+            padding: 0.5rem 0.75rem; background: #fff; color: #222;
+            box-sizing: border-box; outline: none;
+            font-family: 'Inter', sans-serif; transition: border-color 0.15s;
         }
-        .comment-input:focus {
-            border-color: #222222;
+        .comment-input:focus { border-color: #222222; }
+        textarea.comment-input { resize: none; height: 90px; }
+
+        /* SCROLL TO TOP */
+        #scroll-to-top {
+            position: fixed;
+            bottom: 1.5rem; right: 1.5rem;
+            z-index: 1000;
+            width: 40px; height: 40px;
+            background: #222222; color: #fff;
+            border: none; border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            cursor: pointer; opacity: 0; transform: translateY(12px);
+            transition: opacity 0.25s ease, transform 0.25s ease, background 0.2s;
+            pointer-events: none;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.18);
         }
-        textarea.comment-input {
-            resize: none;
-            height: 90px;
+        #scroll-to-top.visible { opacity: 1; transform: translateY(0); pointer-events: auto; }
+        #scroll-to-top:hover { background: #444; }
+        #scroll-to-top svg { width: 16px; height: 16px; }
+
+        /* VER MÁS COMENTARIOS */
+        #load-more-comments {
+            display: none; width: 100%; text-align: center;
+            font-size: 10px; font-weight: 700; letter-spacing: 0.1em;
+            text-transform: uppercase; color: #222; background: #fff;
+            border: 1px solid #222; border-radius: 0.5rem;
+            padding: 0.6rem 1.25rem; cursor: pointer;
+            transition: background 0.2s, color 0.2s; margin-top: 0.75rem;
         }
+        #load-more-comments:hover { background: #222; color: #fff; }
     </style>
 </head>
 <body class="bg-plm-bg font-sans text-plm-dark antialiased px-2 md:px-4 py-4 md:py-8 grid-bg">
+
+    <!-- SCROLL TO TOP -->
+    <button id="scroll-to-top" aria-label="Volver al inicio" title="Volver al inicio">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="18 15 12 9 6 15"></polyline>
+        </svg>
+    </button>
 
     <div id="lightbox" role="dialog" aria-modal="true" aria-label="Imagen ampliada">
         <button id="lightbox-close" aria-label="Cerrar imagen">✕</button>
@@ -173,7 +172,8 @@
     <div class="max-w-[800px] mx-auto bg-white border border-plm-dark shadow-2xl overflow-hidden mt-4 md:mt-10">
         
         <header class="flex items-center justify-between px-5 py-4 md:px-8 md:py-6 border-b border-plm-dark">
-            <button onclick="history.length > 1 ? window.history.back() : window.location.href = 'index.html'" class="text-[10px] md:text-xs font-bold uppercase tracking-widest hover:text-plm-pink transition flex items-center gap-2">
+            <!-- Botón regresar: siempre vuelve al index -->
+            <button id="back-btn" class="text-[10px] md:text-xs font-bold uppercase tracking-widest hover:text-plm-pink transition flex items-center gap-2">
                 ← <span>Regresar</span>
             </button>
             <div class="text-xl md:text-2xl font-serif font-bold tracking-tighter">polifonia.</div>
@@ -208,11 +208,23 @@
 
                 <div id="article-content" class="text-sm md:text-base text-gray-700 leading-relaxed space-y-6"></div>
 
+                <div class="mt-10 pt-6 border-t border-gray-100 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
+                    <span class="text-[10px] font-bold uppercase tracking-widest text-gray-400">¿Te gustó el artículo?</span>
+                    <button id="share-button" class="flex items-center gap-2 text-[10px] font-bold uppercase tracking-widest bg-white border border-plm-dark text-plm-dark px-4 py-2 rounded-md hover:bg-plm-dark hover:text-white transition duration-300">
+                        <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1"></path>
+                        </svg>
+                        <span id="share-text">Copiar Enlace</span>
+                    </button>
+                </div>
+
                 <div id="comments-section" class="hidden mt-12 pt-8 border-t border-gray-200">
                     
                     <h2 id="comments-count" class="text-[10px] font-bold uppercase tracking-widest text-gray-400 mb-5"></h2>
 
-                    <div id="comments-list" class="space-y-4 mb-8"></div>
+                    <div id="comments-list" class="space-y-4 mb-2"></div>
+                    <button id="load-more-comments">Ver más comentarios</button>
+                    <div class="mb-8"></div>
 
                     <div class="bg-gray-50 border border-plm-dark rounded-xl p-5">
                         <p class="text-[10px] font-bold uppercase tracking-widest text-gray-400 mb-4">Dejá tu comentario</p>
@@ -226,7 +238,7 @@
 
                         <input id="comment-author" type="text" placeholder="Tu nombre" class="comment-input mb-3">
                         <textarea id="comment-content" placeholder="¿Qué te pareció el artículo?" class="comment-input mb-3"></textarea>
-                        <div class="flex items-center gap-3">
+                        <div class="flex flex-wrap items-center gap-3">
                             <button id="comment-submit"
                                 class="text-[10px] font-bold uppercase tracking-widest bg-plm-dark text-white px-5 py-2 rounded-md hover:bg-gray-700 transition disabled:opacity-50">
                                 Publicar comentario
@@ -243,5 +255,31 @@
 
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <script src="articulo.js"></script>
+
+    <script>
+        /* BOTÓN REGRESAR
+           Si el usuario viene de la misma web (polifonia.vercel.app) y no de otro artículo,
+           usa history.back() para no romper el historial. En cualquier otro caso
+           (link externo, WhatsApp, directo) manda al index. */
+        const INDEX_URL = 'https://polifonia.vercel.app';
+        document.getElementById('back-btn').addEventListener('click', () => {
+            const ref = document.referrer;
+            const cameFromSite = ref && ref.startsWith(INDEX_URL) && !ref.includes('articulo');
+            if (cameFromSite) {
+                window.history.back();
+            } else {
+                window.location.href = INDEX_URL;
+            }
+        });
+
+        /* SCROLL TO TOP */
+        const scrollBtn = document.getElementById('scroll-to-top');
+        window.addEventListener('scroll', () => {
+            scrollBtn.classList.toggle('visible', window.scrollY > 320);
+        }, { passive: true });
+        scrollBtn.addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+    </script>
 </body>
 </html>
