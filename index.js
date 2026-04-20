@@ -78,6 +78,19 @@ document.addEventListener('DOMContentLoaded', async () => {
     let   allArticles      = [];
     let   catMap           = {};
 
+    // ── LÓGICA DE SCROLL DE CATEGORÍAS ────────────────
+    const btnScrollLeft = document.getElementById('btn-scroll-left');
+    const btnScrollRight = document.getElementById('btn-scroll-right');
+    
+    if (btnScrollLeft && btnScrollRight && categoryFilters) {
+        btnScrollLeft.addEventListener('click', () => {
+            categoryFilters.scrollBy({ left: -250, behavior: 'smooth' });
+        });
+        btnScrollRight.addEventListener('click', () => {
+            categoryFilters.scrollBy({ left: 250, behavior: 'smooth' });
+        });
+    }
+
     // Genera el HTML de una card
     function buildCardHTML(article) {
         const colorId = catMap[article.category];
@@ -136,7 +149,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         // "Todos" primero
         const allBtn = document.createElement('button');
         allBtn.dataset.cat = 'all';
-        allBtn.className = 'filter-btn active-filter text-[9px] font-bold uppercase tracking-widest px-4 py-2 rounded-full border border-plm-dark bg-plm-dark text-white transition';
+        allBtn.className = 'filter-btn active-filter whitespace-nowrap flex-shrink-0 text-[9px] font-bold uppercase tracking-widest px-4 py-2 rounded-full border border-plm-dark bg-plm-dark text-white transition';
         allBtn.textContent = 'Todos';
         categoryFilters.appendChild(allBtn);
 
@@ -149,7 +162,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 
             const btn = document.createElement('button');
             btn.dataset.cat = catName;
-            btn.className   = 'filter-btn text-[9px] font-bold uppercase tracking-widest px-4 py-2 rounded-full border border-gray-200 bg-white text-gray-500 hover:border-plm-dark hover:text-plm-dark transition';
+            btn.className   = 'filter-btn whitespace-nowrap flex-shrink-0 text-[9px] font-bold uppercase tracking-widest px-4 py-2 rounded-full border border-gray-200 bg-white text-gray-500 hover:border-plm-dark hover:text-plm-dark transition';
             btn.style.setProperty('--cat-hex', hex);
             btn.textContent = catName;
             categoryFilters.appendChild(btn);
