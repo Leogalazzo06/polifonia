@@ -3,13 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Leyendo Artículo | Blog</title>
-    
+    <title>Leyendo Artículo | polifonia</title>
+    <link rel="icon" type="image/png" href="favicon-recreado-favicon.png">
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,700;0,800;1,400;1,700&display=swap" rel="stylesheet">
 
     <script>
-        // Mantenemos tu misma configuración de diseño
         tailwind.config = {
             theme: {
                 extend: {
@@ -35,28 +34,147 @@
                 linear-gradient(to bottom, #e2e8f0 1px, transparent 1px);
             background-size: 40px 40px;
         }
-        
-        /* Asegurar que el contenido insertado desde el admin (Quill) sea responsive */
+
+        /* Contenido del artículo (Quill / TinyMCE) */
         #article-content img {
             max-width: 100%;
             height: auto;
             border-radius: 0.5rem;
             margin-top: 1.5rem;
             margin-bottom: 1.5rem;
+            cursor: zoom-in;
+            transition: opacity 0.2s ease;
         }
+        #article-content img:hover {
+            opacity: 0.9;
+        }
+        
+        /* Estilos específicos para reproductores de video */
         #article-content iframe {
-            max-width: 100%;
+            width: 100%;
+            aspect-ratio: 16 / 9;
+            height: auto;
             border-radius: 0.5rem;
+            border: none;
+            margin-top: 1.5rem;
+            margin-bottom: 1.5rem;
+            background-color: #000;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+        }
+
+        /* LIGHTBOX */
+        #lightbox {
+            display: none;
+            position: fixed;
+            inset: 0;
+            z-index: 9999;
+            background: rgba(0, 0, 0, 0.92);
+            align-items: center;
+            justify-content: center;
+            padding: 1rem;
+            backdrop-filter: blur(4px);
+            -webkit-backdrop-filter: blur(4px);
+        }
+        #lightbox.active {
+            display: flex;
+        }
+        #lightbox-img {
+            max-width: 100%;
+            max-height: 90vh;
+            object-fit: contain;
+            border-radius: 0.5rem;
+            box-shadow: 0 25px 60px rgba(0,0,0,0.5);
+            animation: lb-in 0.25s ease;
+        }
+        @keyframes lb-in {
+            from { opacity: 0; transform: scale(0.95); }
+            to   { opacity: 1; transform: scale(1); }
+        }
+        #lightbox-close {
+            position: fixed;
+            top: 1rem;
+            right: 1rem;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.12);
+            border: 1px solid rgba(255,255,255,0.2);
+            color: #fff;
+            font-size: 18px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: background 0.2s;
+            line-height: 1;
+        }
+        #lightbox-close:hover {
+            background: rgba(255,255,255,0.22);
+        }
+        /* Portada también con cursor zoom */
+        #article-image {
+            cursor: zoom-in;
+            transition: opacity 0.2s ease;
+        }
+        #article-image:hover {
+            opacity: 0.92;
+        }
+
+        /* COMENTARIOS */
+        .comment-card {
+            border: 1px solid #e5e7eb;
+            border-radius: 0.75rem;
+            padding: 1rem 1.25rem;
+            background: #fff;
+        }
+        .comment-avatar {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            background: #fcd5e3;
+            color: #9b3d5e;
+            font-size: 10px;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            text-transform: uppercase;
+        }
+        .comment-input {
+            width: 100%;
+            font-size: 0.8rem;
+            border: 1px solid #d1d5db;
+            border-radius: 0.5rem;
+            padding: 0.5rem 0.75rem;
+            background: #fff;
+            color: #222;
+            box-sizing: border-box;
+            outline: none;
+            font-family: 'Inter', sans-serif;
+            transition: border-color 0.15s;
+        }
+        .comment-input:focus {
+            border-color: #222222;
+        }
+        textarea.comment-input {
+            resize: none;
+            height: 90px;
         }
     </style>
 </head>
 <body class="bg-plm-bg font-sans text-plm-dark antialiased px-2 md:px-4 py-4 md:py-8 grid-bg">
 
+    <div id="lightbox" role="dialog" aria-modal="true" aria-label="Imagen ampliada">
+        <button id="lightbox-close" aria-label="Cerrar imagen">✕</button>
+        <img id="lightbox-img" src="" alt="Imagen ampliada">
+    </div>
+
     <div class="max-w-[800px] mx-auto bg-white border border-plm-dark shadow-2xl overflow-hidden mt-4 md:mt-10">
         
         <header class="flex items-center justify-between px-5 py-4 md:px-8 md:py-6 border-b border-plm-dark">
             <button onclick="window.history.back()" class="text-[10px] md:text-xs font-bold uppercase tracking-widest hover:text-plm-pink transition flex items-center gap-2">
-                ← <span class="hidden sm:inline">Regresar</span><span class="sm:hidden">Regresar</span>
+                ← <span>Regresar</span>
             </button>
             <div class="text-xl md:text-2xl font-serif font-bold tracking-tighter">polifonia.</div>
         </header>
@@ -76,9 +194,11 @@
 
             <div id="article-wrapper" class="hidden opacity-0 transition-opacity duration-700 h-full w-full">
                 <span id="article-category" class="text-[10px] font-bold text-plm-green uppercase tracking-widest mb-2 block"></span>
-                <p id="article-author" class="hidden text-[11px] font-semibold text-gray-400 uppercase tracking-widest mb-6" style="display:none">
-                    <span id="article-author-name"></span>
-                </p>
+                
+                <div id="article-author" class="hidden items-center gap-1.5 border border-plm-dark rounded-full px-3 py-1 mb-6 bg-white" style="display:none">
+                    <span class="text-[9px] text-gray-500 uppercase tracking-widest">Autor:</span>
+                    <span id="article-author-name" class="text-[10px] font-bold text-plm-dark uppercase tracking-widest"></span>
+                </div>
                 
                 <h1 id="article-title" class="font-serif text-3xl sm:text-4xl md:text-5xl leading-tight mb-6"></h1>
 
@@ -87,6 +207,35 @@
                 </div>
 
                 <div id="article-content" class="text-sm md:text-base text-gray-700 leading-relaxed space-y-6"></div>
+
+                <div id="comments-section" class="hidden mt-12 pt-8 border-t border-gray-200">
+                    
+                    <h2 id="comments-count" class="text-[10px] font-bold uppercase tracking-widest text-gray-400 mb-5"></h2>
+
+                    <div id="comments-list" class="space-y-4 mb-8"></div>
+
+                    <div class="bg-gray-50 border border-plm-dark rounded-xl p-5">
+                        <p class="text-[10px] font-bold uppercase tracking-widest text-gray-400 mb-4">Dejá tu comentario</p>
+                        
+                        <div id="reply-indicator" class="hidden mb-4 flex items-center justify-between bg-plm-blue/30 px-3 py-2 rounded-lg border border-plm-blue">
+                            <span class="text-[10px] font-bold text-plm-dark uppercase tracking-widest">
+                                Respondiendo a: <span id="reply-to-name" class="text-plm-green font-extrabold"></span>
+                            </span>
+                            <button id="cancel-reply" class="text-gray-500 hover:text-red-500 transition font-bold text-xs">✕</button>
+                        </div>
+
+                        <input id="comment-author" type="text" placeholder="Tu nombre" class="comment-input mb-3">
+                        <textarea id="comment-content" placeholder="¿Qué te pareció el artículo?" class="comment-input mb-3"></textarea>
+                        <div class="flex items-center gap-3">
+                            <button id="comment-submit"
+                                class="text-[10px] font-bold uppercase tracking-widest bg-plm-dark text-white px-5 py-2 rounded-md hover:bg-gray-700 transition disabled:opacity-50">
+                                Publicar comentario
+                            </button>
+                            <p id="comment-feedback" class="text-[10px] hidden"></p>
+                        </div>
+                    </div>
+
+                </div>
             </div>
 
         </article>
