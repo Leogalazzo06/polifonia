@@ -65,7 +65,7 @@
     <div id="inicio" class="max-w-[1200px] mx-auto bg-white border border-plm-dark shadow-2xl overflow-hidden">
         
         <div class="bg-plm-blue border-b border-plm-dark py-2 text-center text-[10px] font-bold tracking-[0.2em] uppercase">
-            Nuevos artículos cada semana
+            @polifonia.ok en Instagram
         </div>
 
         <div class="grid-bg relative border-b border-plm-dark min-h-[500px] md:min-h-[600px] flex flex-col">
@@ -81,8 +81,8 @@
                 </nav>
 
                 <div class="flex items-center gap-3">
-                    <button class="bg-white border border-gray-300 rounded-full px-4 py-2 text-[10px] md:text-[11px] font-bold uppercase tracking-wider hidden md:flex items-center gap-2 hover:bg-plm-pink transition">
-                        <span class="w-2 h-2 rounded-full bg-pink-400"></span> Colaborar
+                    <button id="colaborar-btn-desktop" class="bg-white border border-gray-300 rounded-full px-4 py-2 text-[10px] md:text-[11px] font-bold uppercase tracking-wider hidden md:flex items-center gap-2 hover:bg-plm-pink transition">
+                        <span class="w-2 h-2 rounded-full bg-pink-400"></span> Quiero publicar
                     </button>
                     
                     <button id="mobile-menu-btn" class="lg:hidden p-2 text-plm-dark focus:outline-none">
@@ -98,8 +98,8 @@
                 <a href="#articulos" class="mobile-link text-xs font-bold tracking-widest uppercase text-gray-500 hover:text-plm-dark transition">Artículos</a>
                 <a href="#sobre-mi" class="mobile-link text-xs font-bold tracking-widest uppercase text-gray-500 hover:text-plm-dark transition">Sobre Mí</a>
                 <a href="#sobre-mi" class="mobile-link text-xs font-bold tracking-widest uppercase text-gray-500 hover:text-plm-dark transition">Contacto</a>
-                <button class="bg-white border border-gray-300 rounded-full px-6 py-3 mt-2 text-[10px] font-bold uppercase tracking-wider flex items-center gap-2 hover:bg-plm-pink transition md:hidden">
-                    <span class="w-2 h-2 rounded-full bg-pink-400"></span> Colaborar
+                <button id="colaborar-btn-mobile" class="bg-white border border-gray-300 rounded-full px-6 py-3 mt-2 text-[10px] font-bold uppercase tracking-wider flex items-center gap-2 hover:bg-plm-pink transition md:hidden">
+                    <span class="w-2 h-2 rounded-full bg-pink-400"></span> Quiero publicar
                 </button>
             </div>
 
@@ -123,8 +123,7 @@
 
                 <h1 class="font-serif text-5xl sm:text-6xl md:text-8xl lg:text-9xl leading-[1.1] md:leading-[0.85] mb-8">
                     un <span class="relative">espacio<span class="absolute inset-x-0 bottom-1 md:bottom-2 h-4 md:h-8 bg-plm-blue/60 -z-10 rounded-md"></span></span><br>
-                    <span class="italic font-normal">para</span> compartir<br>
-                    momentos
+                    <span class="italic font-normal">para</span> compartir
                 </h1>
 
                 <button onclick="document.getElementById('articulos').scrollIntoView({behavior: 'smooth'})" class="bg-white border-2 border-plm-dark rounded-full px-8 md:px-10 py-3 md:py-4 text-base md:text-lg font-bold flex items-center gap-3 hover:translate-x-1 hover:translate-y-1 transition shadow-[4px_4px_0px_0px_rgba(34,34,34,1)]">
@@ -144,22 +143,28 @@
             </div>
         </div>
 
-        <section id="articulos" class="py-12 md:py-20 px-4 md:px-6 text-center border-b border-plm-dark bg-white">
+        <section id="articulos" class="pt-12 md:pt-20 px-4 md:px-6 text-center bg-white">
             <div class="flex justify-center mb-4 text-plm-dark">
                 <svg width="28" height="28" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L10.582 16.07a4.5 4.5 0 01-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 011.13-1.897l8.932-8.931zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0115.75 21H5.25A2.25 2.25 0 013 18.75V8.25A2.25 2.25 0 015.25 6H10"></path>
                 </svg>
             </div>
             <h2 class="text-[10px] font-bold tracking-[0.3em] uppercase mb-4 text-gray-500">Últimas Publicaciones</h2>
-            <h3 class="font-serif text-2xl md:text-4xl max-w-2xl mx-auto leading-tight mb-6">
+            <h3 class="font-serif text-2xl md:text-4xl max-w-2xl mx-auto leading-tight mb-8">
                 Explora los artículos más recientes
             </h3>
+
+            <!-- Filtros de categoría -->
+            <div id="category-filters" class="flex flex-wrap justify-center gap-2 pb-8 border-b border-gray-100 min-h-[44px]">
+                <!-- Se generan dinámicamente desde JS -->
+            </div>
         </section>
 
         <section class="p-6 md:p-8 bg-white border-b border-plm-dark">
             <div id="articles-wrapper" class="grid grid-cols-2 lg:grid-cols-3 gap-3 md:gap-6">
                 <p class="text-sm text-gray-500 col-span-full text-center">Cargando artículos...</p>
             </div>
+            <p id="no-results" class="hidden text-sm text-gray-400 col-span-full text-center py-8">No hay artículos en esta categoría todavía.</p>
         </section>
 
    <section id="sobre-mi" class="flex flex-col md:flex-row bg-white border-t border-plm-dark">
@@ -169,7 +174,7 @@
                 <span class="text-[10px] font-bold tracking-[0.3em] uppercase text-gray-400 mb-6">Sobre la autora</span>
                 <h2 class="font-serif text-4xl md:text-5xl mb-6">Hola, soy Lula</h2>
                 <p class="text-sm text-gray-600 mb-8 leading-relaxed">
-                    Soy una apasionada por contar historias, crear contenido visual y explorar nuevas ideas. Creé este espacio como un diario digital para compartir mis aprendizajes, proyectos y las pequeñas cosas que me inspiran cada día.
+                    Soy una apasionada por contar historias, crear contenido visual y explorar nuevas ideas. Creé este espacio como un diario digital para compartir mis aprendizajes, proyectos y las pequeñas cosas que me inspiran cada día. Con una visión única, decidí dar vida a Polifonía, un proyecto que celebra la diversidad de expresiones y la belleza de las múltiples voces que conforman un todo.
                 </p>
 
                 <div class="flex flex-wrap items-center gap-4 mb-8">
@@ -194,13 +199,26 @@
                     <div class="flex flex-col sm:flex-row flex-wrap gap-4">
                         
                         <div class="flex items-center gap-3 bg-white border border-plm-dark rounded-full py-1.5 pr-5 pl-1.5 shadow-sm">
-                            <img src="https://res.cloudinary.com/dl2tftoum/image/upload/v1776650921/srxcho8zt5xaf4stn5ww.webp" alt="Foto Invitado" class="w-10 h-10 rounded-full object-cover border border-plm-dark">
+                            <img src="https://res.cloudinary.com/dl2tftoum/image/upload/v1776711885/bcvmmsvbiky6fwqlpf9z.webp" alt="Foto Invitado" class="w-10 h-10 rounded-full object-cover border border-plm-dark">
                             <div class="flex flex-col">
                                 <span class="text-xs font-bold text-plm-dark leading-tight">Jemima Villalba</span>
                                 <span class="text-[9px] font-bold uppercase tracking-widest text-gray-500 mt-0.5">Aporta en: <span class="text-plm-green">Maquillaje</span></span>
                             </div>
                         </div>
-                        
+                          <div class="flex items-center gap-3 bg-white border border-plm-dark rounded-full py-1.5 pr-5 pl-1.5 shadow-sm">
+                            <img src="https://res.cloudinary.com/dl2tftoum/image/upload/v1776713389/ik6fsdfulzgrwuf6x5n3.webp" alt="Foto Invitado" class="w-10 h-10 rounded-full object-cover border border-plm-dark">
+                            <div class="flex flex-col">
+                                <span class="text-xs font-bold text-plm-dark leading-tight">Dafne Kowalczuk</span>
+                                <span class="text-[9px] font-bold uppercase tracking-widest text-gray-500 mt-0.5">Aporta en: <span class="text-plm-orange">Poesia</span></span>
+                            </div>
+                        </div>
+                           <div class="flex items-center gap-3 bg-white border border-plm-dark rounded-full py-1.5 pr-5 pl-1.5 shadow-sm">
+                            <img src="https://res.cloudinary.com/dl2tftoum/image/upload/v1776650983/tzblzqwlvilxbcxk9nj3.webp" alt="Foto Invitado" class="w-10 h-10 rounded-full object-cover border border-plm-dark">
+                            <div class="flex flex-col">
+                                <span class="text-xs font-bold text-plm-dark leading-tight">Martin Bazan</span>
+                                <span class="text-[9px] font-bold uppercase tracking-widest text-gray-500 mt-0.5">Aporta en: <span class="text-plm-green">Cine</span></span>
+                            </div>
+                        </div>
                         <div class="flex items-center gap-3 bg-white border border-plm-dark rounded-full py-1.5 pr-5 pl-1.5 shadow-sm">
                             <img src="https://res.cloudinary.com/dl2tftoum/image/upload/v1776650875/io7j1clyijgnrfhk7lhv.webp" alt="Foto Invitado" class="w-10 h-10 rounded-full object-cover border border-plm-dark">
                             <div class="flex flex-col">
@@ -213,17 +231,11 @@
                             <img src="https://res.cloudinary.com/dl2tftoum/image/upload/v1776650535/kbtyqjjov385yvpveqkq.webp" alt="Foto Invitado" class="w-10 h-10 rounded-full object-cover border border-plm-dark">
                             <div class="flex flex-col">
                                 <span class="text-xs font-bold text-plm-dark leading-tight">Leonel Galazzo</span>
-                                <span class="text-[9px] font-bold uppercase tracking-widest text-gray-500 mt-0.5">Aporta en: <span class="text-plm-amber">Deportes e Informática</span></span>
+                                <span class="text-[9px] font-bold uppercase tracking-widest text-gray-500 mt-0.5">Aporta en: <span class="text-plm-amber">Fútbol e Informática</span></span>
                             </div>
                         </div>
 
-                         <div class="flex items-center gap-3 bg-white border border-plm-dark rounded-full py-1.5 pr-5 pl-1.5 shadow-sm">
-                            <img src="https://res.cloudinary.com/dl2tftoum/image/upload/v1776650983/tzblzqwlvilxbcxk9nj3.webp" alt="Foto Invitado" class="w-10 h-10 rounded-full object-cover border border-plm-dark">
-                            <div class="flex flex-col">
-                                <span class="text-xs font-bold text-plm-dark leading-tight">Martin Bazan</span>
-                                <span class="text-[9px] font-bold uppercase tracking-widest text-gray-500 mt-0.5">Aporta en: <span class="text-plm-green">Cine</span></span>
-                            </div>
-                        </div>
+                      
 
                     </div>
                 </div>
@@ -269,6 +281,84 @@
         </section>
 
     </div>
+    <!-- ── MODAL QUIERO PUBLICAR ── -->
+    <div id="colaborar-modal" class="fixed inset-0 z-[100] flex items-center justify-center p-4 hidden" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+        <!-- Backdrop -->
+        <div id="modal-backdrop" class="absolute inset-0 bg-plm-dark/60 backdrop-blur-sm"></div>
+
+        <!-- Panel -->
+        <div class="relative bg-white border border-plm-dark shadow-2xl rounded-2xl w-full max-w-sm mx-auto overflow-hidden">
+
+            <!-- Franja superior decorativa -->
+            <div class="h-2 w-full bg-plm-blue"></div>
+
+            <div class="p-6 md:p-8">
+
+                <!-- Header -->
+                <div class="flex items-start justify-between mb-5">
+                    <div>
+                        <p class="text-[9px] font-bold tracking-[0.3em] uppercase text-gray-400 mb-1">Sumate al proyecto</p>
+                        <h2 id="modal-title" class="font-serif text-2xl md:text-3xl leading-tight">Quiero publicar ✦</h2>
+                    </div>
+                    <!-- Acciones: WhatsApp + Cerrar -->
+                    <div class="flex items-center gap-2 ml-4 mt-1 flex-shrink-0">
+                        <a href="https://wa.me/3735530399" target="_blank" aria-label="Contactar por WhatsApp"
+                            class="w-8 h-8 flex items-center justify-center rounded-full border border-gray-200 text-gray-400 hover:bg-plm-blue hover:border-plm-dark hover:text-plm-dark transition">
+                            <svg width="14" height="14" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/>
+                                <path d="M12 0C5.373 0 0 5.373 0 12c0 2.123.554 4.116 1.526 5.845L.057 23.786a.5.5 0 00.637.601l6.094-1.597A11.932 11.932 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.6a9.573 9.573 0 01-4.861-1.322l-.35-.207-3.619.948.97-3.52-.228-.362A9.556 9.556 0 012.4 12c0-5.292 4.308-9.6 9.6-9.6 5.292 0 9.6 4.308 9.6 9.6 0 5.292-4.308 9.6-9.6 9.6z"/>
+                            </svg>
+                        </a>
+                        <button id="modal-close-btn" aria-label="Cerrar"
+                            class="w-8 h-8 flex items-center justify-center rounded-full border border-gray-200 text-gray-400 hover:bg-plm-pink hover:border-plm-dark hover:text-plm-dark transition">
+                            <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" viewBox="0 0 24 24">
+                                <path d="M18 6L6 18M6 6l12 12"/>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Texto explicativo -->
+                <p class="text-xs text-gray-600 mb-5 leading-relaxed">
+                    Polifonia es un espacio abierto para voces que tengan algo que decir. Si querés compartir un artículo, una historia, una reseña o cualquier idea que valga la pena leer, podés ser parte.
+                </p>
+
+                <!-- Pasos -->
+                <div class="space-y-3 mb-6">
+                    <div class="flex items-start gap-3 bg-gray-50 rounded-xl px-4 py-3 border border-gray-100">
+                        <span class="text-[10px] font-bold text-plm-dark bg-plm-blue border border-plm-dark rounded-full w-5 h-5 flex items-center justify-center flex-shrink-0 mt-0.5">1</span>
+                        <p class="text-[11px] text-gray-600 leading-relaxed"><span class="font-bold text-plm-dark">Escribí tu artículo.</span> No hay un formato estricto, pero sí pedimos que sea original, auténtico y con buena redacción.</p>
+                    </div>
+                    <div class="flex items-start gap-3 bg-gray-50 rounded-xl px-4 py-3 border border-gray-100">
+                        <span class="text-[10px] font-bold text-plm-dark bg-plm-pink border border-plm-dark rounded-full w-5 h-5 flex items-center justify-center flex-shrink-0 mt-0.5">2</span>
+                        <p class="text-[11px] text-gray-600 leading-relaxed"><span class="font-bold text-plm-dark">Contactanos por WhatsApp.</span> Mandá tu texto o una propuesta y lo revisamos juntos antes de publicar.</p>
+                    </div>
+                    <div class="flex items-start gap-3 bg-gray-50 rounded-xl px-4 py-3 border border-gray-100">
+                        <span class="text-[10px] font-bold text-plm-dark bg-plm-green border border-plm-dark rounded-full w-5 h-5 flex items-center justify-center flex-shrink-0 mt-0.5">3</span>
+                        <p class="text-[11px] text-gray-600 leading-relaxed"><span class="font-bold text-plm-dark">¡A publicar!</span> Tu nombre y perfil van a aparecer como autor/a en el artículo.</p>
+                    </div>
+                </div>
+
+                <!-- Botones de acción -->
+                <div class="flex gap-3">
+                    <a href="https://wa.me/3735530399" target="_blank"
+                        class="flex-1 flex items-center justify-center gap-2 bg-plm-dark text-white rounded-full py-3 text-[10px] font-bold uppercase tracking-widest hover:bg-gray-700 transition">
+                        <svg width="13" height="13" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/>
+                            <path d="M12 0C5.373 0 0 5.373 0 12c0 2.123.554 4.116 1.526 5.845L.057 23.786a.5.5 0 00.637.601l6.094-1.597A11.932 11.932 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.6a9.573 9.573 0 01-4.861-1.322l-.35-.207-3.619.948.97-3.52-.228-.362A9.556 9.556 0 012.4 12c0-5.292 4.308-9.6 9.6-9.6 5.292 0 9.6 4.308 9.6 9.6 0 5.292-4.308 9.6-9.6 9.6z"/>
+                        </svg>
+                        Contactar
+                    </a>
+                    <button id="modal-close-bottom"
+                        class="flex-1 border border-plm-dark rounded-full py-3 text-[10px] font-bold uppercase tracking-widest hover:bg-plm-pink transition">
+                        Cerrar
+                    </button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <script src="index.js"></script>
 </body>
