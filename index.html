@@ -58,6 +58,15 @@
             -ms-overflow-style: none;
             scrollbar-width: none;
         }
+
+        /* Ocultar barra de scroll para las categorías */
+        .hide-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .hide-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
     </style>
 </head>
 <body class="bg-plm-green font-sans text-plm-dark antialiased px-2 md:px-4 py-4 md:py-8">
@@ -143,7 +152,7 @@
             </div>
         </div>
 
-        <section id="articulos" class="pt-12 md:pt-20 px-4 md:px-6 text-center bg-white">
+        <section id="articulos" class="pt-12 md:pt-20 px-4 md:px-6 text-center bg-white relative">
             <div class="flex justify-center mb-4 text-plm-dark">
                 <svg width="28" height="28" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L10.582 16.07a4.5 4.5 0 01-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 011.13-1.897l8.932-8.931zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0115.75 21H5.25A2.25 2.25 0 013 18.75V8.25A2.25 2.25 0 015.25 6H10"></path>
@@ -154,14 +163,28 @@
                 Explora los artículos más recientes
             </h3>
 
-            <!-- Filtros de categoría -->
-            <div id="category-filters" class="flex flex-wrap justify-center gap-2 pb-8 border-b border-gray-100 min-h-[44px]">
-                <!-- Se generan dinámicamente desde JS -->
+            <div class="relative pb-10 md:pb-8 border-b border-gray-100 mb-8 w-full max-w-4xl mx-auto group">
+                <button id="btn-scroll-left" class="hidden md:flex absolute left-0 top-0 mt-1 z-10 bg-white border border-gray-200 rounded-full w-8 h-8 items-center justify-center text-gray-500 hover:border-plm-dark hover:text-plm-dark transition shadow-[0_0_10px_rgba(255,255,255,0.8)]">
+                    <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7"></path></svg>
+                </button>
+
+                <div class="absolute right-0 top-0 h-10 w-12 bg-gradient-to-l from-white to-transparent pointer-events-none md:hidden z-10"></div>
+
+                <div id="category-filters" class="flex gap-2 overflow-x-auto hide-scrollbar scroll-smooth px-4 md:px-10 w-full snap-x relative z-0">
+                    </div>
+
+                <button id="btn-scroll-right" class="hidden md:flex absolute right-0 top-0 mt-1 z-10 bg-white border border-gray-200 rounded-full w-8 h-8 items-center justify-center text-gray-500 hover:border-plm-dark hover:text-plm-dark transition shadow-[0_0_10px_rgba(255,255,255,0.8)]">
+                    <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"></path></svg>
+                </button>
+
+                <p class="absolute bottom-2 left-0 right-0 text-center md:hidden pointer-events-none text-[8px] font-bold tracking-[0.2em] uppercase text-gray-400">
+                    ← Deslizá para ver más →
+                </p>
             </div>
         </section>
 
         <section class="p-6 md:p-8 bg-white border-b border-plm-dark">
-            <div id="articles-wrapper" class="grid grid-cols-2 lg:grid-cols-3 gap-3 md:gap-6">
+            <div id="articles-wrapper" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
                 <p class="text-sm text-gray-500 col-span-full text-center">Cargando artículos...</p>
             </div>
             <p id="no-results" class="hidden text-sm text-gray-400 col-span-full text-center py-8">No hay artículos en esta categoría todavía.</p>
@@ -169,7 +192,6 @@
 
    <section id="sobre-mi" class="flex flex-col md:flex-row bg-white border-t border-plm-dark">
 
-            <!-- Columna izquierda: texto -->
             <div class="flex-1 p-8 md:p-12 flex flex-col justify-center items-start order-2 md:order-1">
                 <span class="text-[10px] font-bold tracking-[0.3em] uppercase text-gray-400 mb-6">Sobre la autora</span>
                 <h2 class="font-serif text-4xl md:text-5xl mb-6">Hola, soy Lula</h2>
@@ -241,28 +263,21 @@
                 </div>
             </div>
 
-            <!-- Columna derecha: imagen decorada -->
             <div class="flex-1 bg-plm-pink border-b md:border-b-0 md:border-l border-plm-dark flex items-center justify-center order-1 md:order-2 py-10 md:py-0 px-8 md:px-0 min-h-[360px] md:min-h-0">
                 <div class="relative flex items-center justify-center w-full h-full">
 
-                    <!-- Fondo decorativo punteado -->
                     <div class="absolute inset-0 opacity-20"
                          style="background-image: radial-gradient(circle, #222 1px, transparent 1px); background-size: 18px 18px;">
                     </div>
 
-                    <!-- Sombra offset (neobrutalist) -->
                     <div class="absolute w-[220px] h-[270px] md:w-[260px] md:h-[320px] bg-plm-dark rounded-2xl"
                          style="top: calc(50% - 135px + 8px); left: calc(50% - 110px + 8px);">
                     </div>
-                    <!-- En md ajustamos con CSS -->
-
-                    <!-- Contenedor de la imagen -->
                     <div class="relative w-[220px] h-[270px] md:w-[260px] md:h-[320px] border-2 border-plm-dark rounded-2xl overflow-hidden shadow-lg z-10 flex-shrink-0">
                         <img src="pequeña.jpeg" alt="Lula, autora de polifonia"
                              class="w-full h-full object-cover grayscale hover:grayscale-0 transition duration-700">
                     </div>
 
-                    <!-- Sticker: estrella top-left -->
                     <div class="absolute z-20 bg-plm-green border border-plm-dark rounded-full w-10 h-10 flex items-center justify-center shadow-sm"
                          style="top: calc(50% - 135px - 16px); left: calc(50% - 110px - 16px);">
                         <svg width="18" height="18" fill="none" stroke="#222" stroke-width="1.5" viewBox="0 0 24 24">
@@ -270,7 +285,6 @@
                         </svg>
                     </div>
 
-                    <!-- Etiqueta pill bottom-right -->
                     <div class="absolute z-20 bg-white border border-plm-dark rounded-full px-3 py-1 text-[9px] font-bold uppercase tracking-widest shadow-sm whitespace-nowrap"
                          style="bottom: calc(50% - 135px - 14px); right: calc(50% - 110px - 20px);">
                         ✦ polifonia
@@ -281,34 +295,21 @@
         </section>
 
     </div>
-    <!-- ── MODAL QUIERO PUBLICAR ── -->
     <div id="colaborar-modal" class="fixed inset-0 z-[100] flex items-center justify-center p-4 hidden" role="dialog" aria-modal="true" aria-labelledby="modal-title">
-        <!-- Backdrop -->
         <div id="modal-backdrop" class="absolute inset-0 bg-plm-dark/60 backdrop-blur-sm"></div>
 
-        <!-- Panel -->
-        <div class="relative bg-white border border-plm-dark shadow-2xl rounded-2xl w-full max-w-sm mx-auto overflow-hidden">
+        <div class="relative bg-white border border-plm-dark shadow-2xl rounded-2xl w-full max-w-md mx-auto overflow-hidden max-h-[90vh] flex flex-col">
 
-            <!-- Franja superior decorativa -->
-            <div class="h-2 w-full bg-plm-blue"></div>
+            <div class="h-2 w-full bg-plm-blue flex-shrink-0"></div>
 
-            <div class="p-6 md:p-8">
+            <div class="overflow-y-auto flex-1 p-6 md:p-8">
 
-                <!-- Header -->
                 <div class="flex items-start justify-between mb-5">
                     <div>
-                        <p class="text-[9px] font-bold tracking-[0.3em] uppercase text-gray-400 mb-1">Sumate al proyecto</p>
+                        <p class="text-[9px] font-bold tracking-[0.3em] uppercase text-gray-400 mb-1">Convocatoria abierta</p>
                         <h2 id="modal-title" class="font-serif text-2xl md:text-3xl leading-tight">Quiero publicar ✦</h2>
                     </div>
-                    <!-- Acciones: WhatsApp + Cerrar -->
                     <div class="flex items-center gap-2 ml-4 mt-1 flex-shrink-0">
-                        <a href="https://wa.me/3735530399" target="_blank" aria-label="Contactar por WhatsApp"
-                            class="w-8 h-8 flex items-center justify-center rounded-full border border-gray-200 text-gray-400 hover:bg-plm-blue hover:border-plm-dark hover:text-plm-dark transition">
-                            <svg width="14" height="14" fill="currentColor" viewBox="0 0 24 24">
-                                <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/>
-                                <path d="M12 0C5.373 0 0 5.373 0 12c0 2.123.554 4.116 1.526 5.845L.057 23.786a.5.5 0 00.637.601l6.094-1.597A11.932 11.932 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.6a9.573 9.573 0 01-4.861-1.322l-.35-.207-3.619.948.97-3.52-.228-.362A9.556 9.556 0 012.4 12c0-5.292 4.308-9.6 9.6-9.6 5.292 0 9.6 4.308 9.6 9.6 0 5.292-4.308 9.6-9.6 9.6z"/>
-                            </svg>
-                        </a>
                         <button id="modal-close-btn" aria-label="Cerrar"
                             class="w-8 h-8 flex items-center justify-center rounded-full border border-gray-200 text-gray-400 hover:bg-plm-pink hover:border-plm-dark hover:text-plm-dark transition">
                             <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" viewBox="0 0 24 24">
@@ -318,28 +319,61 @@
                     </div>
                 </div>
 
-                <!-- Texto explicativo -->
                 <p class="text-xs text-gray-600 mb-5 leading-relaxed">
-                    Polifonia es un espacio abierto para voces que tengan algo que decir. Si querés compartir un artículo, una historia, una reseña o cualquier idea que valga la pena leer, podés ser parte.
+                    Polifonía es un espacio libre y abierto, destinado a personas que desean expresar sus ideas, reflexiones, experiencias o creaciones. Aunque valoramos la libertad creativa, mantenemos una estética cuidada y una armonía que preserva el propósito original del proyecto.
                 </p>
 
-                <!-- Pasos -->
-                <div class="space-y-3 mb-6">
-                    <div class="flex items-start gap-3 bg-gray-50 rounded-xl px-4 py-3 border border-gray-100">
-                        <span class="text-[10px] font-bold text-plm-dark bg-plm-blue border border-plm-dark rounded-full w-5 h-5 flex items-center justify-center flex-shrink-0 mt-0.5">1</span>
-                        <p class="text-[11px] text-gray-600 leading-relaxed"><span class="font-bold text-plm-dark">Escribí tu artículo.</span> No hay un formato estricto, pero sí pedimos que sea original, auténtico y con buena redacción.</p>
-                    </div>
-                    <div class="flex items-start gap-3 bg-gray-50 rounded-xl px-4 py-3 border border-gray-100">
-                        <span class="text-[10px] font-bold text-plm-dark bg-plm-pink border border-plm-dark rounded-full w-5 h-5 flex items-center justify-center flex-shrink-0 mt-0.5">2</span>
-                        <p class="text-[11px] text-gray-600 leading-relaxed"><span class="font-bold text-plm-dark">Contactanos por WhatsApp.</span> Mandá tu texto o una propuesta y lo revisamos juntos antes de publicar.</p>
-                    </div>
-                    <div class="flex items-start gap-3 bg-gray-50 rounded-xl px-4 py-3 border border-gray-100">
-                        <span class="text-[10px] font-bold text-plm-dark bg-plm-green border border-plm-dark rounded-full w-5 h-5 flex items-center justify-center flex-shrink-0 mt-0.5">3</span>
-                        <p class="text-[11px] text-gray-600 leading-relaxed"><span class="font-bold text-plm-dark">¡A publicar!</span> Tu nombre y perfil van a aparecer como autor/a en el artículo.</p>
+                <div class="mb-4">
+                    <p class="text-[9px] font-bold tracking-[0.25em] uppercase text-gray-400 mb-3">Incluí en tu propuesta</p>
+                    <div class="space-y-2">
+                        <div class="flex items-start gap-3 bg-gray-50 rounded-xl px-3 py-2.5 border border-gray-100">
+                            <span class="text-[10px] font-bold text-plm-dark bg-plm-blue border border-plm-dark rounded-full w-5 h-5 flex items-center justify-center flex-shrink-0 mt-0.5">1</span>
+                            <p class="text-[11px] text-gray-600 leading-relaxed"><span class="font-bold text-plm-dark">Nombre completo.</span></p>
+                        </div>
+                        <div class="flex items-start gap-3 bg-gray-50 rounded-xl px-3 py-2.5 border border-gray-100">
+                            <span class="text-[10px] font-bold text-plm-dark bg-plm-pink border border-plm-dark rounded-full w-5 h-5 flex items-center justify-center flex-shrink-0 mt-0.5">2</span>
+                            <p class="text-[11px] text-gray-600 leading-relaxed"><span class="font-bold text-plm-dark">Tipo de participación:</span> autor fijo (mínimo un artículo por semana) o publicación por única vez.</p>
+                        </div>
+                        <div class="flex items-start gap-3 bg-gray-50 rounded-xl px-3 py-2.5 border border-gray-100">
+                            <span class="text-[10px] font-bold text-plm-dark bg-plm-green border border-plm-dark rounded-full w-5 h-5 flex items-center justify-center flex-shrink-0 mt-0.5">3</span>
+                            <p class="text-[11px] text-gray-600 leading-relaxed"><span class="font-bold text-plm-dark">Categoría o temática</span> de interés.</p>
+                        </div>
                     </div>
                 </div>
 
-                <!-- Botones de acción -->
+                <div id="modal-extra" class="hidden space-y-2 mb-4">
+                    <div class="flex items-start gap-3 bg-gray-50 rounded-xl px-3 py-2.5 border border-gray-100">
+                        <span class="text-[10px] font-bold text-plm-dark bg-amber-100 border border-plm-dark rounded-full w-5 h-5 flex items-center justify-center flex-shrink-0 mt-0.5">4</span>
+                        <p class="text-[11px] text-gray-600 leading-relaxed"><span class="font-bold text-plm-dark">Título tentativo</span> del artículo.</p>
+                    </div>
+                    <div class="flex items-start gap-3 bg-gray-50 rounded-xl px-3 py-2.5 border border-gray-100">
+                        <span class="text-[10px] font-bold text-plm-dark bg-purple-100 border border-plm-dark rounded-full w-5 h-5 flex items-center justify-center flex-shrink-0 mt-0.5">5</span>
+                        <p class="text-[11px] text-gray-600 leading-relaxed"><span class="font-bold text-plm-dark">Desarrollo o contenido detallado</span> de lo que deseás escribir.</p>
+                    </div>
+                    <div class="flex items-start gap-3 bg-gray-50 rounded-xl px-3 py-2.5 border border-gray-100">
+                        <span class="text-[10px] font-bold text-plm-dark bg-plm-blue border border-plm-dark rounded-full w-5 h-5 flex items-center justify-center flex-shrink-0 mt-0.5">6</span>
+                        <p class="text-[11px] text-gray-600 leading-relaxed"><span class="font-bold text-plm-dark">Foto personal</span> para presentación del autor/a.</p>
+                    </div>
+                    <div class="flex items-start gap-3 bg-gray-50 rounded-xl px-3 py-2.5 border border-gray-100">
+                        <span class="text-[10px] font-bold text-plm-dark bg-plm-pink border border-plm-dark rounded-full w-5 h-5 flex items-center justify-center flex-shrink-0 mt-0.5">7</span>
+                        <p class="text-[11px] text-gray-600 leading-relaxed"><span class="font-bold text-plm-dark">Opcional:</span> imagen representativa del artículo para acompañar la publicación.</p>
+                    </div>
+
+                    <div class="bg-plm-green/20 border border-plm-green rounded-xl px-4 py-3 mt-1">
+                        <p class="text-[11px] text-gray-700 leading-relaxed">
+                            Los autores redactan a voluntad, siempre respetando el espíritu del espacio. Si tenés ganas de compartir historias, reflexiones, opiniones, dedicatorias, entrevistas o cualquier contenido que te nazca… <span class="font-bold text-plm-dark">este es un lindo lugar para hacerlo.</span>
+                        </p>
+                    </div>
+                </div>
+
+                <button id="modal-toggle-more"
+                    class="flex items-center gap-1.5 text-[10px] font-bold uppercase tracking-widest text-gray-400 hover:text-plm-dark transition mb-5">
+                    <span id="modal-toggle-label">Ver más</span>
+                    <svg id="modal-toggle-icon" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" style="transition: transform 0.2s;">
+                        <polyline points="6 9 12 15 18 9"></polyline>
+                    </svg>
+                </button>
+
                 <div class="flex gap-3">
                     <a href="https://wa.me/3735530399" target="_blank"
                         class="flex-1 flex items-center justify-center gap-2 bg-plm-dark text-white rounded-full py-3 text-[10px] font-bold uppercase tracking-widest hover:bg-gray-700 transition">
@@ -358,6 +392,22 @@
             </div>
         </div>
     </div>
+
+    <script>
+        /* VER MÁS / VER MENOS en el modal */
+        const toggleBtn   = document.getElementById('modal-toggle-more');
+        const extraBlock  = document.getElementById('modal-extra');
+        const toggleLabel = document.getElementById('modal-toggle-label');
+        const toggleIcon  = document.getElementById('modal-toggle-icon');
+        let expanded = false;
+
+        toggleBtn.addEventListener('click', () => {
+            expanded = !expanded;
+            extraBlock.classList.toggle('hidden', !expanded);
+            toggleLabel.textContent = expanded ? 'Ver menos' : 'Ver más';
+            toggleIcon.style.transform = expanded ? 'rotate(180deg)' : 'rotate(0deg)';
+        });
+    </script>
 
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <script src="index.js"></script>
