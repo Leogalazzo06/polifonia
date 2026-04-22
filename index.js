@@ -117,7 +117,7 @@ document.addEventListener('DOMContentLoaded', async () => {
                 ${mediaHTML}
                 <span class="text-[9px] md:text-[10px] font-bold ${style.text} uppercase tracking-widest mb-1 md:mb-2">${article.category}</span>
                 <h4 class="font-serif text-base md:text-2xl mb-2 md:mb-3 leading-tight">${article.title}</h4>
-                <p class="text-[11px] md:text-xs text-gray-500 mb-3 md:mb-4 line-clamp-2 hidden sm:block">${article.excerpt}</p>
+                <p class="text-[11px] md:text-xs text-gray-500 mb-3 md:mb-4 line-clamp-2">${article.excerpt}</p>
                 ${article.author ? `
                 <div class="inline-flex items-start gap-1.5 border border-plm-dark rounded-full px-2.5 py-1 mb-3 md:mb-4 bg-white max-w-full">
                     <svg width="10" height="10" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" class="shrink-0 opacity-50 mt-0.5"><path d="M12 20h9M16.5 3.5a2.121 2.121 0 013 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>
@@ -204,7 +204,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         if (artRes.error) throw artRes.error;
         if (catRes.error) throw catRes.error;
 
-        allArticles = artRes.data;
+        allArticles = artRes.data.filter(a => !a.archived);
         const categories = catRes.data;
 
         categories.forEach(c => { catMap[c.name] = c.color_id; });
