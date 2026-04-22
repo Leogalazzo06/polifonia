@@ -121,20 +121,64 @@
             </div>
 
             <div class="flex-grow flex flex-col items-center justify-center text-center px-4 md:px-6 py-12 md:py-20 relative z-10">
-                <div class="absolute left-4 md:left-10 top-5 md:top-20 text-plm-dark opacity-60 md:opacity-80">
-                    <svg width="24" height="24" class="md:w-9 md:h-9" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+
+                <!-- ★ Chispitas / destellos — arriba izquierda -->
+                <div class="absolute left-4 md:left-10 top-5 md:top-16 text-plm-dark opacity-70">
+                    <svg width="26" height="26" class="md:w-10 md:h-10" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09zM18.259 8.715L18 9.75l-.259-1.035a3.375 3.375 0 00-2.455-2.456L14.25 6l1.036-.259a3.375 3.375 0 002.455-2.456L18 2.25l.259 1.035a3.375 3.375 0 002.456 2.456L21.75 6l-1.035.259a3.375 3.375 0 00-2.456 2.456zM16.894 20.567L16.5 21.75l-.394-1.183a2.25 2.25 0 00-1.423-1.423L13.5 18.75l1.183-.394a2.25 2.25 0 001.423-1.423l.394-1.183.394 1.183a2.25 2.25 0 001.423 1.423l1.183.394-1.183.394a2.25 2.25 0 00-1.423 1.423z"></path>
                     </svg>
                 </div>
-                
-                <div class="absolute right-4 md:right-20 top-4 md:top-10 text-plm-dark opacity-60 md:opacity-80">
-                    <svg width="22" height="22" class="md:w-8 md:h-8" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M20 8h-2.5a2.5 2.5 0 010 5H18v-5zm-2-2v8a3 3 0 01-3 3H7a3 3 0 01-3-3V6a2 2 0 012-2h10a2 2 0 012 2z"></path>
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M6 3v2m4-2v2m4-2v2"></path>
+
+                <!-- ★ Lapicera — arriba derecha -->
+                <div class="absolute right-5 md:right-16 top-4 md:top-10 text-plm-dark opacity-70 rotate-12">
+                    <svg width="24" height="24" class="md:w-9 md:h-9" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L10.582 16.07a4.5 4.5 0 01-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 011.13-1.897l8.932-8.931z"/>
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 7.125L18 14v4.75A2.25 2.25 0 0115.75 21H5.25A2.25 2.25 0 013 18.75V8.25A2.25 2.25 0 015.25 6H10"/>
                     </svg>
                 </div>
-                
-                <div class="absolute left-8 bottom-20 bg-plm-pink border border-plm-dark p-3 rotate-[-4deg] max-w-[140px] text-[10px] font-bold uppercase leading-tight text-left hidden lg:block">
+
+                <!-- ★ Mate — abajo izquierda (visible siempre) -->
+                <div class="absolute left-4 md:left-14 bottom-16 md:bottom-24 text-plm-dark opacity-70 rotate-[-6deg]">
+                    <svg width="26" height="26" class="md:w-10 md:h-10" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+                        <!-- vaso mate -->
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M7 6h10l-1.5 11a2 2 0 01-2 1.8h-3a2 2 0 01-2-1.8L7 6z"/>
+                        <!-- bombilla -->
+                        <line x1="12" y1="6" x2="12" y2="2" stroke-linecap="round"/>
+                        <circle cx="12" cy="2" r="0.8" fill="currentColor"/>
+                        <!-- asa -->
+                        <path stroke-linecap="round" d="M17 9.5c1.5 0 2.5 1 2.5 2.5s-1 2.5-2.5 2.5"/>
+                    </svg>
+                </div>
+
+                <!-- ★ Termo — abajo derecha (visible siempre) -->
+                <div class="absolute right-5 md:right-16 bottom-14 md:bottom-20 text-plm-dark opacity-70 rotate-[5deg]">
+                    <svg width="24" height="24" class="md:w-9 md:h-9" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+                        <!-- cuerpo del termo -->
+                        <rect x="8" y="4" width="8" height="15" rx="3" stroke-linecap="round"/>
+                        <!-- tapa -->
+                        <rect x="9" y="2" width="6" height="3" rx="1"/>
+                        <!-- línea decorativa -->
+                        <line x1="8" y1="10" x2="16" y2="10" stroke-linecap="round"/>
+                    </svg>
+                </div>
+
+                <!-- ★ Libro — centro derecha (solo md+) -->
+                <div class="hidden md:block absolute right-8 top-1/2 -translate-y-1/2 text-plm-dark opacity-50">
+                    <svg width="32" height="32" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M12 6.042A8.967 8.967 0 006 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 016 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 016-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0018 18a8.967 8.967 0 00-6 2.292m0-14.25v14.25"/>
+                    </svg>
+                </div>
+
+                <!-- ★ Luna — centro izquierda (solo md+) -->
+                <div class="hidden md:block absolute left-8 top-1/2 -translate-y-1/2 text-plm-dark opacity-40">
+                    <svg width="28" height="28" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M21.752 15.002A9.718 9.718 0 0118 15.75c-5.385 0-9.75-4.365-9.75-9.75 0-1.33.266-2.597.748-3.752A9.753 9.753 0 003 11.25C3 16.635 7.365 21 12.75 21a9.753 9.753 0 009.002-5.998z"/>
+                    </svg>
+                </div>
+
+                <!-- ★ Notita — visible siempre, tamaño adaptado -->
+                <div class="absolute left-3 md:left-8 bottom-14 md:bottom-20 bg-plm-pink border border-plm-dark p-2 md:p-3 rotate-[-4deg] max-w-[110px] md:max-w-[140px] text-[9px] md:text-[10px] font-bold uppercase leading-tight text-left z-20"
+                     style="margin-left: 36px;">
                     Ideas, reflexiones y creatividad en un solo lugar
                 </div>
 
@@ -226,60 +270,70 @@
 
                 <div class="w-full border-t border-gray-200 pt-6">
                     <span class="text-[10px] font-bold tracking-[0.3em] uppercase text-gray-400 mb-4 block">Invitados</span>
-                    <div class="flex flex-col sm:flex-row flex-wrap gap-4">
-                        
-                        <div class="flex items-center gap-3 bg-white border border-plm-dark rounded-full py-1.5 pr-5 pl-1.5 shadow-sm">
-                            <img src="https://res.cloudinary.com/dl2tftoum/image/upload/v1776711885/bcvmmsvbiky6fwqlpf9z.webp" alt="Foto Invitado" class="w-10 h-10 rounded-full object-cover border border-plm-dark">
-                            <div class="flex flex-col">
-                                <span class="text-xs font-bold text-plm-dark leading-tight">Jemima Villalba</span>
-                                <span class="text-[9px] font-bold uppercase tracking-widest text-gray-500 mt-0.5">Aporta en: <span class="text-plm-green">Maquillaje</span></span>
-                            </div>
-                        </div>
-                          <div class="flex items-center gap-3 bg-white border border-plm-dark rounded-full py-1.5 pr-5 pl-1.5 shadow-sm">
-                            <img src="https://res.cloudinary.com/dl2tftoum/image/upload/v1776713389/ik6fsdfulzgrwuf6x5n3.webp" alt="Foto Invitado" class="w-10 h-10 rounded-full object-cover border border-plm-dark">
-                            <div class="flex flex-col">
-                                <span class="text-xs font-bold text-plm-dark leading-tight">Dafne Kowalczuk</span>
-                                <span class="text-[9px] font-bold uppercase tracking-widest text-gray-500 mt-0.5">Aporta en: <span class="text-plm-orange">Poesia</span></span>
-                            </div>
-                        </div>
-                         <div class="flex items-center gap-3 bg-white border border-plm-dark rounded-full py-1.5 pr-5 pl-1.5 shadow-sm">
-                            <img src="https://res.cloudinary.com/dl2tftoum/image/upload/v1776729557/nzxpvowe3avivpjt1swl.webp" alt="Foto Invitado" class="w-10 h-10 rounded-full object-cover border border-plm-dark">
-                            <div class="flex flex-col">
-                                <span class="text-xs font-bold text-plm-dark leading-tight">Tatiana Hoffman</span>
-                                <span class="text-[9px] font-bold uppercase tracking-widest text-gray-500 mt-0.5">Aporta en: <span class="text-plm-orange">Poesia</span></span>
-                            </div>
-                        </div>
-                           <div class="flex items-center gap-3 bg-white border border-plm-dark rounded-full py-1.5 pr-5 pl-1.5 shadow-sm">
-                            <img src="https://res.cloudinary.com/dl2tftoum/image/upload/v1776650983/tzblzqwlvilxbcxk9nj3.webp" alt="Foto Invitado" class="w-10 h-10 rounded-full object-cover border border-plm-dark">
-                            <div class="flex flex-col">
-                                <span class="text-xs font-bold text-plm-dark leading-tight">Martin Bazan</span>
-                                <span class="text-[9px] font-bold uppercase tracking-widest text-gray-500 mt-0.5">Aporta en: <span class="text-plm-green">Cine</span></span>
-                            </div>
-                        </div>
-                            <div class="flex items-center gap-3 bg-white border border-plm-dark rounded-full py-1.5 pr-5 pl-1.5 shadow-sm">
-                            <img src="https://res.cloudinary.com/dl2tftoum/image/upload/v1776729632/ekhhvnclq9uagzls3x5n.webp" alt="Foto Invitado" class="w-10 h-10 rounded-full object-cover border border-plm-dark">
-                            <div class="flex flex-col">
-                                <span class="text-xs font-bold text-plm-dark leading-tight">Alejo Lopez</span>
-                                <span class="text-[9px] font-bold uppercase tracking-widest text-gray-500 mt-0.5">Aporta en: <span class="text-plm-green">Maquillaje</span></span>
-                            </div>
-                        </div>
-                        <div class="flex items-center gap-3 bg-white border border-plm-dark rounded-full py-1.5 pr-5 pl-1.5 shadow-sm">
-                            <img src="https://res.cloudinary.com/dl2tftoum/image/upload/v1776650875/io7j1clyijgnrfhk7lhv.webp" alt="Foto Invitado" class="w-10 h-10 rounded-full object-cover border border-plm-dark">
-                            <div class="flex flex-col">
-                                <span class="text-xs font-bold text-plm-dark leading-tight">Xavier Ledesma</span>
-                                <span class="text-[9px] font-bold uppercase tracking-widest text-gray-500 mt-0.5">Aporta en: <span class="text-plm-blue">Emprendedurismo</span></span>
+                    <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3">
+
+                        <div class="flex flex-col items-center text-center gap-2 bg-white border border-gray-200 rounded-2xl p-3 hover:border-plm-dark hover:shadow-sm transition">
+                            <img src="https://res.cloudinary.com/dl2tftoum/image/upload/v1776711885/bcvmmsvbiky6fwqlpf9z.webp" alt="Jemima Villalba" class="w-14 h-14 rounded-full object-cover border-2 border-plm-dark">
+                            <div>
+                                <p class="text-xs font-bold text-plm-dark leading-tight">Jemima Villalba</p>
+                                <p class="text-[9px] font-bold uppercase tracking-widest text-gray-400 mt-0.5">Aporta en</p>
+                                <p class="text-[10px] font-bold text-plm-green">Maquillaje</p>
                             </div>
                         </div>
 
-                        <div class="flex items-center gap-3 bg-white border border-plm-dark rounded-full py-1.5 pr-5 pl-1.5 shadow-sm">
-                            <img src="https://res.cloudinary.com/dl2tftoum/image/upload/v1776650535/kbtyqjjov385yvpveqkq.webp" alt="Foto Invitado" class="w-10 h-10 rounded-full object-cover border border-plm-dark">
-                            <div class="flex flex-col">
-                                <span class="text-xs font-bold text-plm-dark leading-tight">Leonel Galazzo</span>
-                                <span class="text-[9px] font-bold uppercase tracking-widest text-gray-500 mt-0.5">Aporta en: <span class="text-plm-amber">Fútbol e Informática</span></span>
+                        <div class="flex flex-col items-center text-center gap-2 bg-white border border-gray-200 rounded-2xl p-3 hover:border-plm-dark hover:shadow-sm transition">
+                            <img src="https://res.cloudinary.com/dl2tftoum/image/upload/v1776713389/ik6fsdfulzgrwuf6x5n3.webp" alt="Dafne Kowalczuk" class="w-14 h-14 rounded-full object-cover border-2 border-plm-dark">
+                            <div>
+                                <p class="text-xs font-bold text-plm-dark leading-tight">Dafne Kowalczuk</p>
+                                <p class="text-[9px] font-bold uppercase tracking-widest text-gray-400 mt-0.5">Aporta en</p>
+                                <p class="text-[10px] font-bold text-orange-400">Poesía</p>
                             </div>
                         </div>
 
-                      
+                        <div class="flex flex-col items-center text-center gap-2 bg-white border border-gray-200 rounded-2xl p-3 hover:border-plm-dark hover:shadow-sm transition">
+                            <img src="https://res.cloudinary.com/dl2tftoum/image/upload/v1776729557/nzxpvowe3avivpjt1swl.webp" alt="Tatiana Hoffman" class="w-14 h-14 rounded-full object-cover border-2 border-plm-dark">
+                            <div>
+                                <p class="text-xs font-bold text-plm-dark leading-tight">Tatiana Hoffman</p>
+                                <p class="text-[9px] font-bold uppercase tracking-widest text-gray-400 mt-0.5">Aporta en</p>
+                                <p class="text-[10px] font-bold text-orange-400">Poesía</p>
+                            </div>
+                        </div>
+
+                        <div class="flex flex-col items-center text-center gap-2 bg-white border border-gray-200 rounded-2xl p-3 hover:border-plm-dark hover:shadow-sm transition">
+                            <img src="https://res.cloudinary.com/dl2tftoum/image/upload/v1776650983/tzblzqwlvilxbcxk9nj3.webp" alt="Martin Bazan" class="w-14 h-14 rounded-full object-cover border-2 border-plm-dark">
+                            <div>
+                                <p class="text-xs font-bold text-plm-dark leading-tight">Martin Bazan</p>
+                                <p class="text-[9px] font-bold uppercase tracking-widest text-gray-400 mt-0.5">Aporta en</p>
+                                <p class="text-[10px] font-bold text-plm-green">Cine</p>
+                            </div>
+                        </div>
+
+                        <div class="flex flex-col items-center text-center gap-2 bg-white border border-gray-200 rounded-2xl p-3 hover:border-plm-dark hover:shadow-sm transition">
+                            <img src="https://res.cloudinary.com/dl2tftoum/image/upload/v1776729632/ekhhvnclq9uagzls3x5n.webp" alt="Alejo Lopez" class="w-14 h-14 rounded-full object-cover border-2 border-plm-dark">
+                            <div>
+                                <p class="text-xs font-bold text-plm-dark leading-tight">Alejo Lopez</p>
+                                <p class="text-[9px] font-bold uppercase tracking-widest text-gray-400 mt-0.5">Aporta en</p>
+                                <p class="text-[10px] font-bold text-plm-green">Maquillaje</p>
+                            </div>
+                        </div>
+
+                        <div class="flex flex-col items-center text-center gap-2 bg-white border border-gray-200 rounded-2xl p-3 hover:border-plm-dark hover:shadow-sm transition">
+                            <img src="https://res.cloudinary.com/dl2tftoum/image/upload/v1776650875/io7j1clyijgnrfhk7lhv.webp" alt="Xavier Ledesma" class="w-14 h-14 rounded-full object-cover border-2 border-plm-dark">
+                            <div>
+                                <p class="text-xs font-bold text-plm-dark leading-tight">Xavier Ledesma</p>
+                                <p class="text-[9px] font-bold uppercase tracking-widest text-gray-400 mt-0.5">Aporta en</p>
+                                <p class="text-[10px] font-bold text-plm-blue">Emprendedurismo</p>
+                            </div>
+                        </div>
+
+                        <div class="flex flex-col items-center text-center gap-2 bg-white border border-gray-200 rounded-2xl p-3 hover:border-plm-dark hover:shadow-sm transition">
+                            <img src="https://res.cloudinary.com/dl2tftoum/image/upload/v1776650535/kbtyqjjov385yvpveqkq.webp" alt="Leonel Galazzo" class="w-14 h-14 rounded-full object-cover border-2 border-plm-dark">
+                            <div>
+                                <p class="text-xs font-bold text-plm-dark leading-tight">Leonel Galazzo</p>
+                                <p class="text-[9px] font-bold uppercase tracking-widest text-gray-400 mt-0.5">Aporta en</p>
+                                <p class="text-[10px] font-bold text-amber-500">Fútbol e Informática</p>
+                            </div>
+                        </div>
 
                     </div>
                 </div>
