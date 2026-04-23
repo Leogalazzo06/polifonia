@@ -7,15 +7,26 @@ let currentReplyToId = null;
 const COMMENTS_PAGE_SIZE = 3;
 
 const CATEGORY_PALETTE = [
-    { id: 'pink',   hex: '#fcd5e3', text: 'text-pink-400'   },
-    { id: 'blue',   hex: '#bde3df', text: 'text-blue-400'   },
-    { id: 'green',  hex: '#a8c292', text: 'text-plm-green'  },
-    { id: 'amber',  hex: '#fde68a', text: 'text-amber-500'  },
-    { id: 'purple', hex: '#e9d5ff', text: 'text-purple-500' },
-    { id: 'red',    hex: '#fecaca', text: 'text-red-400'    },
-    { id: 'orange', hex: '#fed7aa', text: 'text-orange-500' },
-    { id: 'teal',   hex: '#99f6e4', text: 'text-teal-500'   },
-    { id: 'gray',   hex: '#e5e7eb', text: 'text-gray-500'   },
+    { id: 'pink',    hex: '#fce7f3', text: 'text-pink-500'    },
+    { id: 'rose',    hex: '#ffe4e6', text: 'text-rose-500'    },
+    { id: 'fuchsia', hex: '#fae8ff', text: 'text-fuchsia-500' },
+    { id: 'purple',  hex: '#f3e8ff', text: 'text-purple-500'  },
+    { id: 'violet',  hex: '#ede9fe', text: 'text-violet-500'  },
+    { id: 'indigo',  hex: '#e0e7ff', text: 'text-indigo-500'  },
+    { id: 'blue',    hex: '#dbeafe', text: 'text-blue-500'    },
+    { id: 'sky',     hex: '#e0f2fe', text: 'text-sky-500'     },
+    { id: 'cyan',    hex: '#cffafe', text: 'text-cyan-600'    },
+    { id: 'teal',    hex: '#ccfbf1', text: 'text-teal-600'    },
+    { id: 'emerald', hex: '#d1fae5', text: 'text-emerald-600' },
+    { id: 'green',   hex: '#dcfce7', text: 'text-green-600'   },
+    { id: 'lime',    hex: '#f7fee7', text: 'text-lime-600'    },
+    { id: 'yellow',  hex: '#fefce8', text: 'text-yellow-600'  },
+    { id: 'amber',   hex: '#fffbeb', text: 'text-amber-600'   },
+    { id: 'orange',  hex: '#fff7ed', text: 'text-orange-600'  },
+    { id: 'red',     hex: '#fef2f2', text: 'text-red-500'     },
+    { id: 'stone',   hex: '#f5f5f4', text: 'text-stone-500'   },
+    { id: 'zinc',    hex: '#f4f4f5', text: 'text-zinc-500'    },
+    { id: 'gray',    hex: '#f9fafb', text: 'text-gray-500'    },
 ];
 
 function getCategoryStyle(colorId) {
