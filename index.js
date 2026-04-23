@@ -5,15 +5,26 @@ const supabaseClient = window.supabase.createClient(supabaseUrl, supabaseKey);
 
 // ── PALETA DE COLORES (igual que admin.js) ─────────────
 const CATEGORY_PALETTE = [
-    { id: 'pink',   hex: '#fcd5e3', bg: 'bg-plm-pink/20',  text: 'text-pink-400',   badge: 'bg-pink-50 text-pink-700'   },
-    { id: 'blue',   hex: '#bde3df', bg: 'bg-plm-blue/20',  text: 'text-blue-400',   badge: 'bg-blue-50 text-blue-700'   },
-    { id: 'green',  hex: '#a8c292', bg: 'bg-green-50',      text: 'text-plm-green',  badge: 'bg-emerald-50 text-emerald-700' },
-    { id: 'amber',  hex: '#fde68a', bg: 'bg-amber-50',      text: 'text-amber-500',  badge: 'bg-amber-50 text-amber-700' },
-    { id: 'purple', hex: '#e9d5ff', bg: 'bg-purple-50',     text: 'text-purple-500', badge: 'bg-purple-50 text-purple-700' },
-    { id: 'red',    hex: '#fecaca', bg: 'bg-red-50',        text: 'text-red-400',    badge: 'bg-red-50 text-red-700'     },
-    { id: 'orange', hex: '#fed7aa', bg: 'bg-orange-50',     text: 'text-orange-500', badge: 'bg-orange-50 text-orange-700' },
-    { id: 'teal',   hex: '#99f6e4', bg: 'bg-teal-50',       text: 'text-teal-500',   badge: 'bg-teal-50 text-teal-700'   },
-    { id: 'gray',   hex: '#e5e7eb', bg: 'bg-gray-50',       text: 'text-gray-500',   badge: 'bg-gray-100 text-gray-600'  },
+    { id: 'pink',    hex: '#fce7f3', bg: 'bg-pink-50',    text: 'text-pink-500',    badge: 'bg-pink-100 text-pink-700'       },
+    { id: 'rose',    hex: '#ffe4e6', bg: 'bg-rose-50',    text: 'text-rose-500',    badge: 'bg-rose-100 text-rose-700'       },
+    { id: 'fuchsia', hex: '#fae8ff', bg: 'bg-fuchsia-50', text: 'text-fuchsia-500', badge: 'bg-fuchsia-100 text-fuchsia-700' },
+    { id: 'purple',  hex: '#f3e8ff', bg: 'bg-purple-50',  text: 'text-purple-500',  badge: 'bg-purple-100 text-purple-700'   },
+    { id: 'violet',  hex: '#ede9fe', bg: 'bg-violet-50',  text: 'text-violet-500',  badge: 'bg-violet-100 text-violet-700'   },
+    { id: 'indigo',  hex: '#e0e7ff', bg: 'bg-indigo-50',  text: 'text-indigo-500',  badge: 'bg-indigo-100 text-indigo-700'   },
+    { id: 'blue',    hex: '#dbeafe', bg: 'bg-blue-50',    text: 'text-blue-500',    badge: 'bg-blue-100 text-blue-700'       },
+    { id: 'sky',     hex: '#e0f2fe', bg: 'bg-sky-50',     text: 'text-sky-500',     badge: 'bg-sky-100 text-sky-700'         },
+    { id: 'cyan',    hex: '#cffafe', bg: 'bg-cyan-50',    text: 'text-cyan-600',    badge: 'bg-cyan-100 text-cyan-700'       },
+    { id: 'teal',    hex: '#ccfbf1', bg: 'bg-teal-50',    text: 'text-teal-600',    badge: 'bg-teal-100 text-teal-700'       },
+    { id: 'emerald', hex: '#d1fae5', bg: 'bg-emerald-50', text: 'text-emerald-600', badge: 'bg-emerald-100 text-emerald-700' },
+    { id: 'green',   hex: '#dcfce7', bg: 'bg-green-50',   text: 'text-green-600',   badge: 'bg-green-100 text-green-700'     },
+    { id: 'lime',    hex: '#f7fee7', bg: 'bg-lime-50',    text: 'text-lime-600',    badge: 'bg-lime-100 text-lime-700'       },
+    { id: 'yellow',  hex: '#fefce8', bg: 'bg-yellow-50',  text: 'text-yellow-600',  badge: 'bg-yellow-100 text-yellow-700'   },
+    { id: 'amber',   hex: '#fffbeb', bg: 'bg-amber-50',   text: 'text-amber-600',   badge: 'bg-amber-100 text-amber-700'     },
+    { id: 'orange',  hex: '#fff7ed', bg: 'bg-orange-50',  text: 'text-orange-600',  badge: 'bg-orange-100 text-orange-700'   },
+    { id: 'red',     hex: '#fef2f2', bg: 'bg-red-50',     text: 'text-red-500',     badge: 'bg-red-100 text-red-700'         },
+    { id: 'stone',   hex: '#f5f5f4', bg: 'bg-stone-50',   text: 'text-stone-500',   badge: 'bg-stone-100 text-stone-700'     },
+    { id: 'zinc',    hex: '#f4f4f5', bg: 'bg-zinc-50',    text: 'text-zinc-500',    badge: 'bg-zinc-100 text-zinc-700'       },
+    { id: 'gray',    hex: '#f9fafb', bg: 'bg-gray-50',    text: 'text-gray-500',    badge: 'bg-gray-100 text-gray-600'       },
 ];
 
 function getCategoryStyle(colorId) {
