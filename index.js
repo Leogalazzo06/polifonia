@@ -90,9 +90,9 @@ document.addEventListener('DOMContentLoaded', async () => {
     let   catMap           = {};
 
     // ── LÓGICA DE SCROLL DE CATEGORÍAS ────────────────
-    const btnScrollLeft = document.getElementById('btn-scroll-left');
+    const btnScrollLeft  = document.getElementById('btn-scroll-left');
     const btnScrollRight = document.getElementById('btn-scroll-right');
-    
+
     if (btnScrollLeft && btnScrollRight && categoryFilters) {
         btnScrollLeft.addEventListener('click', () => {
             categoryFilters.scrollBy({ left: -250, behavior: 'smooth' });
@@ -123,7 +123,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         }
 
         return `
-            <div onclick="window.location.href='articulo.html?id=${article.id}'"
+            <div onclick="window.location.href='articulo.html?slug=${article.slug}'"
                 class="h-full w-full flex flex-col border border-gray-200 rounded-xl p-3 md:p-6 items-start text-left shadow-sm hover:shadow-md transition cursor-pointer" ${cardBg}>
                 ${mediaHTML}
                 <span class="text-[9px] md:text-[10px] font-bold ${style.text} uppercase tracking-widest mb-1 md:mb-2">${article.category}</span>
