@@ -151,8 +151,8 @@ async function loadComments(articleId) {
 }
 
 function setupCommentForm(articleId) {
-    const btn           = document.getElementById('comment-submit');
-    const feedback      = document.getElementById('comment-feedback');
+    const btn            = document.getElementById('comment-submit');
+    const feedback       = document.getElementById('comment-feedback');
     const cancelReplyBtn = document.getElementById('cancel-reply');
 
     cancelReplyBtn.addEventListener('click', () => {
@@ -222,11 +222,9 @@ function setupShareButton() {
         if (navigator.share) {
             try {
                 await navigator.share({ url });
-                return; // éxito — no mostramos "¡Copiado!" porque el usuario eligió dónde compartir
+                return;
             } catch (e) {
-                // El usuario canceló el diálogo nativo → no hacemos nada más
                 if (e.name === 'AbortError') return;
-                // Otro error → caemos al clipboard
             }
         }
 
@@ -256,21 +254,11 @@ function setupShareButton() {
 
 document.addEventListener('DOMContentLoaded', async () => {
     const urlParams       = new URLSearchParams(window.location.search);
-    const articleId       = urlParams.get('id');
+    const slugParam       = urlParams.get('slug');
     const loaderContainer = document.getElementById('loader-container');
     const articleWrapper  = document.getElementById('article-wrapper');
 
     initLightbox();
-
-    // Tiempo real (WebSockets)
-    if (articleId) {
-        supabaseClient.channel('realtime-comments')
-            .on('postgres_changes',
-                { event: 'INSERT', schema: 'public', table: 'comments', filter: `article_id=eq.${articleId}` },
-                () => { loadComments(articleId); }
-            )
-            .subscribe();
-    }
 
     const showContent = () => {
         loaderContainer.classList.add('hidden');
@@ -278,7 +266,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         setTimeout(() => { articleWrapper.classList.remove('opacity-0'); }, 50);
     };
 
-    if (!articleId) {
+    if (!slugParam) {
         document.getElementById('article-title').textContent = 'Artículo no encontrado';
         document.getElementById('article-content').innerHTML = '<p>No se especificó ningún artículo en la URL.</p>';
         document.getElementById('article-image').parentElement.classList.add('hidden');
@@ -287,15 +275,27 @@ document.addEventListener('DOMContentLoaded', async () => {
 
     try {
         const [artRes, catRes] = await Promise.all([
-            supabaseClient.from('articles').select('*').eq('id', articleId).single(),
+            supabaseClient.from('articles').select('*').eq('slug', slugParam).single(),
             supabaseClient.from('categories').select('*')
         ]);
         if (artRes.error) throw artRes.error;
 
         const article    = artRes.data;
+        const articleId  = article.id; // lo usamos para comentarios y realtime
         const categories = catRes.data || [];
         const catData    = categories.find(c => c.name === article.category);
         const style      = getCategoryStyle(catData?.color_id);
+
+        // ── Tiempo real (WebSockets) ──────────────────────
+        supabaseClient.channel('realtime-comments')
+            .on('postgres_changes',
+                { event: 'INSERT', schema: 'public', table: 'comments', filter: `article_id=eq.${articleId}` },
+                () => { loadComments(articleId); }
+            )
+            .subscribe();
+
+        // ── Título de pestaña ─────────────────────────────
+        document.title = `${article.title} | polifonia`;
 
         document.getElementById('article-title').textContent = article.title;
 
