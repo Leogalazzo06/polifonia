@@ -98,10 +98,6 @@
                 </nav>
 
                 <div class="flex items-center gap-3">
-                    <button id="colaborar-btn-desktop" class="bg-white border border-gray-300 rounded-full px-4 py-2 text-[10px] md:text-[11px] font-bold uppercase tracking-wider hidden md:flex items-center gap-2 hover:bg-plm-pink transition">
-                        <span class="w-2 h-2 rounded-full bg-pink-400"></span> Quiero publicar
-                    </button>
-                    
                     <button id="mobile-menu-btn" class="lg:hidden p-2 text-plm-dark focus:outline-none">
                         <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
@@ -115,9 +111,7 @@
                 <a href="#articulos" class="mobile-link text-xs font-bold tracking-widest uppercase text-gray-500 hover:text-plm-dark transition">Artículos</a>
                 <a href="#sobre-mi" class="mobile-link text-xs font-bold tracking-widest uppercase text-gray-500 hover:text-plm-dark transition">Sobre Mí</a>
                 <a href="#sobre-mi" class="mobile-link text-xs font-bold tracking-widest uppercase text-gray-500 hover:text-plm-dark transition">Contacto</a>
-                <button id="colaborar-btn-mobile" class="bg-white border border-gray-300 rounded-full px-6 py-3 mt-2 text-[10px] font-bold uppercase tracking-wider flex items-center gap-2 hover:bg-plm-pink transition md:hidden">
-                    <span class="w-2 h-2 rounded-full bg-pink-400"></span> Quiero publicar
-                </button>
+
             </div>
 
             <div class="flex-grow flex flex-col items-center justify-center text-center px-4 md:px-6 py-12 md:py-20 relative z-10">
@@ -176,9 +170,11 @@
                     </svg>
                 </div>
 
-                <!-- ★ Notita — visible siempre, tamaño adaptado -->
-                <div class="absolute left-3 md:left-8 bottom-14 md:bottom-20 bg-plm-pink border border-plm-dark p-2 md:p-3 rotate-[-4deg] max-w-[110px] md:max-w-[140px] text-[9px] md:text-[10px] font-bold uppercase leading-tight text-left z-20"
-                     style="margin-left: 36px;">
+                <!-- ★ Notita — en mobile va inline centrada arriba del título; en md+ sigue en absoluta -->
+                <div class="md:hidden mb-5 bg-plm-pink border border-plm-dark p-3 rotate-[-2deg] max-w-[160px] text-[10px] font-bold uppercase leading-tight text-center z-20">
+                    Ideas, reflexiones y creatividad en un solo lugar
+                </div>
+                <div class="hidden md:block absolute left-8 bottom-20 bg-plm-pink border border-plm-dark p-3 rotate-[-4deg] max-w-[140px] text-[10px] font-bold uppercase leading-tight text-left z-20">
                     Ideas, reflexiones y creatividad en un solo lugar
                 </div>
 
@@ -187,9 +183,14 @@
                     <span class="italic font-normal">para</span> compartir
                 </h1>
 
-                <button onclick="document.getElementById('articulos').scrollIntoView({behavior: 'smooth'})" class="bg-white border-2 border-plm-dark rounded-full px-8 md:px-10 py-3 md:py-4 text-base md:text-lg font-bold flex items-center gap-3 hover:translate-x-1 hover:translate-y-1 transition shadow-[4px_4px_0px_0px_rgba(34,34,34,1)]">
-                    Leer el Blog
-                </button>
+                <div class="flex flex-col sm:flex-row items-center justify-center gap-3 md:gap-4 relative z-10">
+                    <button onclick="document.getElementById('articulos').scrollIntoView({behavior: 'smooth'})" class="bg-white border-2 border-plm-dark rounded-full px-7 sm:px-8 md:px-10 py-3 md:py-4 text-sm sm:text-base md:text-lg font-bold flex items-center gap-3 hover:translate-x-1 hover:translate-y-1 transition shadow-[4px_4px_0px_0px_rgba(34,34,34,1)]">
+                        Leer el Blog
+                    </button>
+                    <a href="postulate.html" class="bg-plm-pink border-2 border-plm-dark rounded-full px-7 sm:px-8 md:px-10 py-3 md:py-4 text-sm sm:text-base md:text-lg font-bold flex items-center gap-3 hover:translate-x-1 hover:translate-y-1 transition shadow-[4px_4px_0px_0px_rgba(34,34,34,1)]">
+                        <span class="w-2.5 h-2.5 rounded-full bg-pink-500 flex-shrink-0"></span> Quiero publicar
+                    </a>
+                </div>
             </div>
         </div>
 
@@ -371,120 +372,6 @@
         </section>
 
     </div>
-    <div id="colaborar-modal" class="fixed inset-0 z-[100] flex items-center justify-center p-4 hidden" role="dialog" aria-modal="true" aria-labelledby="modal-title">
-        <div id="modal-backdrop" class="absolute inset-0 bg-plm-dark/60 backdrop-blur-sm"></div>
-
-        <div class="relative bg-white border border-plm-dark shadow-2xl rounded-2xl w-full max-w-md mx-auto overflow-hidden max-h-[90vh] flex flex-col">
-
-            <div class="h-2 w-full bg-plm-blue flex-shrink-0"></div>
-
-            <div class="overflow-y-auto flex-1 p-6 md:p-8">
-
-                <div class="flex items-start justify-between mb-5">
-                    <div>
-                        <p class="text-[9px] font-bold tracking-[0.3em] uppercase text-gray-400 mb-1">Convocatoria abierta</p>
-                        <h2 id="modal-title" class="font-serif text-2xl md:text-3xl leading-tight">Quiero publicar ✦</h2>
-                    </div>
-                    <div class="flex items-center gap-2 ml-4 mt-1 flex-shrink-0">
-                        <button id="modal-close-btn" aria-label="Cerrar"
-                            class="w-8 h-8 flex items-center justify-center rounded-full border border-gray-200 text-gray-400 hover:bg-plm-pink hover:border-plm-dark hover:text-plm-dark transition">
-                            <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" viewBox="0 0 24 24">
-                                <path d="M18 6L6 18M6 6l12 12"/>
-                            </svg>
-                        </button>
-                    </div>
-                </div>
-
-                <p class="text-xs text-gray-600 mb-5 leading-relaxed">
-                    Polifonía es un espacio libre y abierto, destinado a personas que desean expresar sus ideas, reflexiones, experiencias o creaciones. Aunque valoramos la libertad creativa, mantenemos una estética cuidada y una armonía que preserva el propósito original del proyecto.
-                </p>
-
-                <div class="mb-4">
-                    <p class="text-[9px] font-bold tracking-[0.25em] uppercase text-gray-400 mb-3">Incluí en tu propuesta</p>
-                    <div class="space-y-2">
-                        <div class="flex items-start gap-3 bg-gray-50 rounded-xl px-3 py-2.5 border border-gray-100">
-                            <span class="text-[10px] font-bold text-plm-dark bg-plm-blue border border-plm-dark rounded-full w-5 h-5 flex items-center justify-center flex-shrink-0 mt-0.5">1</span>
-                            <p class="text-[11px] text-gray-600 leading-relaxed"><span class="font-bold text-plm-dark">Nombre completo.</span></p>
-                        </div>
-                        <div class="flex items-start gap-3 bg-gray-50 rounded-xl px-3 py-2.5 border border-gray-100">
-                            <span class="text-[10px] font-bold text-plm-dark bg-plm-pink border border-plm-dark rounded-full w-5 h-5 flex items-center justify-center flex-shrink-0 mt-0.5">2</span>
-                            <p class="text-[11px] text-gray-600 leading-relaxed"><span class="font-bold text-plm-dark">Tipo de participación:</span> autor fijo (mínimo un artículo por semana) o publicación por única vez.</p>
-                        </div>
-                        <div class="flex items-start gap-3 bg-gray-50 rounded-xl px-3 py-2.5 border border-gray-100">
-                            <span class="text-[10px] font-bold text-plm-dark bg-plm-green border border-plm-dark rounded-full w-5 h-5 flex items-center justify-center flex-shrink-0 mt-0.5">3</span>
-                            <p class="text-[11px] text-gray-600 leading-relaxed"><span class="font-bold text-plm-dark">Categoría o temática</span> de interés.</p>
-                        </div>
-                    </div>
-                </div>
-
-                <div id="modal-extra" class="hidden space-y-2 mb-4">
-                    <div class="flex items-start gap-3 bg-gray-50 rounded-xl px-3 py-2.5 border border-gray-100">
-                        <span class="text-[10px] font-bold text-plm-dark bg-amber-100 border border-plm-dark rounded-full w-5 h-5 flex items-center justify-center flex-shrink-0 mt-0.5">4</span>
-                        <p class="text-[11px] text-gray-600 leading-relaxed"><span class="font-bold text-plm-dark">Título tentativo</span> del artículo.</p>
-                    </div>
-                    <div class="flex items-start gap-3 bg-gray-50 rounded-xl px-3 py-2.5 border border-gray-100">
-                        <span class="text-[10px] font-bold text-plm-dark bg-purple-100 border border-plm-dark rounded-full w-5 h-5 flex items-center justify-center flex-shrink-0 mt-0.5">5</span>
-                        <p class="text-[11px] text-gray-600 leading-relaxed"><span class="font-bold text-plm-dark">Desarrollo o contenido detallado</span> de lo que deseás escribir.</p>
-                    </div>
-                    <div class="flex items-start gap-3 bg-gray-50 rounded-xl px-3 py-2.5 border border-gray-100">
-                        <span class="text-[10px] font-bold text-plm-dark bg-plm-blue border border-plm-dark rounded-full w-5 h-5 flex items-center justify-center flex-shrink-0 mt-0.5">6</span>
-                        <p class="text-[11px] text-gray-600 leading-relaxed"><span class="font-bold text-plm-dark">Foto personal</span> para presentación del autor/a.</p>
-                    </div>
-                    <div class="flex items-start gap-3 bg-gray-50 rounded-xl px-3 py-2.5 border border-gray-100">
-                        <span class="text-[10px] font-bold text-plm-dark bg-plm-pink border border-plm-dark rounded-full w-5 h-5 flex items-center justify-center flex-shrink-0 mt-0.5">7</span>
-                        <p class="text-[11px] text-gray-600 leading-relaxed"><span class="font-bold text-plm-dark">Opcional:</span> imagen representativa del artículo para acompañar la publicación.</p>
-                    </div>
-
-                    <div class="bg-plm-green/20 border border-plm-green rounded-xl px-4 py-3 mt-1">
-                        <p class="text-[11px] text-gray-700 leading-relaxed">
-                            Los autores redactan a voluntad, siempre respetando el espíritu del espacio. Si tenés ganas de compartir historias, reflexiones, opiniones, dedicatorias, entrevistas o cualquier contenido que te nazca… <span class="font-bold text-plm-dark">este es un lindo lugar para hacerlo.</span>
-                        </p>
-                    </div>
-                </div>
-
-                <button id="modal-toggle-more"
-                    class="flex items-center gap-1.5 text-[10px] font-bold uppercase tracking-widest text-gray-400 hover:text-plm-dark transition mb-5">
-                    <span id="modal-toggle-label">Ver más</span>
-                    <svg id="modal-toggle-icon" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" style="transition: transform 0.2s;">
-                        <polyline points="6 9 12 15 18 9"></polyline>
-                    </svg>
-                </button>
-
-                <div class="flex gap-3">
-                    <a href="https://wa.me/3735530399" target="_blank"
-                        class="flex-1 flex items-center justify-center gap-2 bg-plm-dark text-white rounded-full py-3 text-[10px] font-bold uppercase tracking-widest hover:bg-gray-700 transition">
-                        <svg width="13" height="13" fill="currentColor" viewBox="0 0 24 24">
-                            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/>
-                            <path d="M12 0C5.373 0 0 5.373 0 12c0 2.123.554 4.116 1.526 5.845L.057 23.786a.5.5 0 00.637.601l6.094-1.597A11.932 11.932 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.6a9.573 9.573 0 01-4.861-1.322l-.35-.207-3.619.948.97-3.52-.228-.362A9.556 9.556 0 012.4 12c0-5.292 4.308-9.6 9.6-9.6 5.292 0 9.6 4.308 9.6 9.6 0 5.292-4.308 9.6-9.6 9.6z"/>
-                        </svg>
-                        Contactar
-                    </a>
-                    <button id="modal-close-bottom"
-                        class="flex-1 border border-plm-dark rounded-full py-3 text-[10px] font-bold uppercase tracking-widest hover:bg-plm-pink transition">
-                        Cerrar
-                    </button>
-                </div>
-
-            </div>
-        </div>
-    </div>
-
-    <script>
-        /* VER MÁS / VER MENOS en el modal */
-        const toggleBtn   = document.getElementById('modal-toggle-more');
-        const extraBlock  = document.getElementById('modal-extra');
-        const toggleLabel = document.getElementById('modal-toggle-label');
-        const toggleIcon  = document.getElementById('modal-toggle-icon');
-        let expanded = false;
-
-        toggleBtn.addEventListener('click', () => {
-            expanded = !expanded;
-            extraBlock.classList.toggle('hidden', !expanded);
-            toggleLabel.textContent = expanded ? 'Ver menos' : 'Ver más';
-            toggleIcon.style.transform = expanded ? 'rotate(180deg)' : 'rotate(0deg)';
-        });
-    </script>
-
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <script src="index.js"></script>
 </body>
