@@ -33,36 +33,6 @@ function getCategoryStyle(colorId) {
 
 document.addEventListener('DOMContentLoaded', async () => {
 
-    // ── MODAL QUIERO PUBLICAR ─────────────────────────
-    const colaborarModal   = document.getElementById('colaborar-modal');
-    const modalBackdrop    = document.getElementById('modal-backdrop');
-    const modalCloseBtn    = document.getElementById('modal-close-btn');
-    const modalCloseBottom = document.getElementById('modal-close-bottom');
-
-    function openModal() {
-        colaborarModal.classList.remove('hidden');
-        document.body.style.overflow = 'hidden';
-    }
-
-    function closeModal() {
-        colaborarModal.classList.add('hidden');
-        document.body.style.overflow = '';
-    }
-
-    // Abrir desde desktop y mobile
-    document.getElementById('colaborar-btn-desktop')?.addEventListener('click', openModal);
-    document.getElementById('colaborar-btn-mobile')?.addEventListener('click', () => {
-        const mm = document.getElementById('mobile-menu');
-        if (mm) { mm.classList.add('hidden'); mm.classList.remove('flex'); }
-        openModal();
-    });
-
-    // Cerrar
-    modalCloseBtn?.addEventListener('click', closeModal);
-    modalCloseBottom?.addEventListener('click', closeModal);
-    modalBackdrop?.addEventListener('click', closeModal);
-    document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
-
     // ── MENÚ HAMBURGUESA ──────────────────────────────
     const mobileMenuBtn = document.getElementById('mobile-menu-btn');
     const mobileMenu    = document.getElementById('mobile-menu');
